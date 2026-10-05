@@ -7,12 +7,12 @@ const href = project.destination === 'article'
   ? withBase(`blog/${project.article}/`)
   : withBase(`projects/${project.slug}/`);
 ---
-<a class:list={['project-card', project.size]} href={href} data-categories={project.categories.join(' ')}>
-  <img src={withBase(project.cover)} alt="" loading={project.size === 'featured' ? 'eager' : 'lazy'} />
-  <span class="destination-badge">{project.destination}</span>
-  <span class="project-index">{String(index + 1).padStart(3, '0')}</span>
-  <span class="project-overlay">
-    <span class="project-kicker">{project.kicker}</span>
+<a class="project-card" href={href} data-categories={project.categories.join(' ')}>
+  <span class="project-thumb">
+    <img src={withBase(project.cover)} alt="" loading={index < 4 ? 'eager' : 'lazy'} />
+    <span class="project-index">{String(index + 1).padStart(2, '0')}</span>
+  </span>
+  <span class="project-copy">
     <span class="project-title">{project.title}</span>
     <span class="project-meta">{project.meta}</span>
   </span>
