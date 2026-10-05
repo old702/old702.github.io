@@ -3,31 +3,37 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { site } from '../data/site';
 ---
 <BaseLayout title={`About — ${site.name}`} active="about">
-  <div class="wrap">
-    <div class="topline"><span>Profile / Information</span><span>About</span></div>
-    <header class="about-head">
-      <span class="eyebrow">About</span>
-      <h1>ABOUT.</h1>
-      <div class="about-role">GAME DEVELOPER / ARTIST</div>
+  <div class="page-shell narrow-page">
+    <header class="page-intro">
+      <span class="page-kicker">Profile</span>
+      <h1>About.</h1>
+      <p>Game developer and artist working across real-time rendering, technical art, tools, environment production and pipeline development.</p>
     </header>
 
-    <section class="about-layout">
-      <p class="about-intro">Developer and artist working across game development, real-time rendering, technical art, tools, environment production and pipeline development.</p>
-      <div class="about-columns">
-        <section class="about-block">
-          <h2>EXPERIENCE:</h2>
-          <div class="about-entry"><span>2026 —</span><div><strong>Independent Game / Rendering Development</strong><small>Subtransit · engine systems · rendering · world building · tools</small></div></div>
-          <div class="about-entry"><span>Tools</span><div><strong>Technical Art & Pipeline Development</strong><small>C++ · Python · Blender · Unreal Engine · Dear ImGui</small></div></div>
-          <div class="about-entry"><span>Research</span><div><strong>Real-time Graphics</strong><small>Forward+ · materials · GI · AA · texture processing</small></div></div>
-        </section>
-        <section class="about-block">
-          <h2>CONTACT:</h2>
-          <div class="contact-links">
-            <a href={`mailto:${site.email}`}><span>Email</span><small>{site.email} ↗</small></a>
-            <a href={site.github}><span>GitHub</span><small>GitHub ↗</small></a>
-            <a href={site.artstation}><span>ArtStation</span><small>ArtStation ↗</small></a>
-          </div>
-        </section>
+    <section class="about-simple">
+      <div class="about-section">
+        <h2>Experience</h2>
+        <article>
+          <span>2026 —</span>
+          <div><strong>Independent game / rendering development</strong><p>Subtransit · engine systems · rendering · world building · tools</p></div>
+        </article>
+        <article>
+          <span>Tools</span>
+          <div><strong>Technical art & pipeline development</strong><p>C++ · Python · Blender · Unreal Engine · Dear ImGui</p></div>
+        </article>
+        <article>
+          <span>Research</span>
+          <div><strong>Real-time graphics</strong><p>Forward+ · materials · GI · AA · texture processing</p></div>
+        </article>
+      </div>
+
+      <div class="about-section">
+        <h2>Contact</h2>
+        <div class="simple-links">
+          <a href={`mailto:${site.email}`}><span>Email</span><small>{site.email}</small></a>
+          <a href={site.github}><span>GitHub</span><small>old702 ↗</small></a>
+          <a href={site.artstation}><span>ArtStation</span><small>Profile ↗</small></a>
+        </div>
       </div>
     </section>
   </div>
