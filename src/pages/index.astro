@@ -6,24 +6,30 @@ import { projects } from '../data/projects';
 <BaseLayout active="work">
   <div class="wrap">
     <div class="topline"><span>Portfolio / Selected Work</span><span>2026</span></div>
-    <section class="hero">
+
+    <section class="work-intro">
       <div>
         <span class="eyebrow">Game Development · Rendering · Tools</span>
-        <h1>BUILDING SYSTEMS,<br />WORLDS AND TOOLS.</h1>
+        <h1>WORK.</h1>
       </div>
-      <div class="hero-copy">
-        <span class="subtitle">GAME DEVELOPER / ARTIST</span>
-        <p>Projects, technical art, rendering experiments and production tools.</p>
+      <div class="work-intro-copy">
+        <strong>GAME DEVELOPER / ARTIST</strong>
+        <p>Selected projects, technical art, rendering research and production tools.</p>
       </div>
     </section>
 
-    <div class="section-head"><strong>Selected Projects</strong><span>01 — {String(projects.length).padStart(2, '0')}</span></div>
-    <div class="filters" role="group" aria-label="Project filters">
-      <button class="active" data-filter="all">All</button>
-      <button data-filter="game">Games</button>
-      <button data-filter="tool">Tools</button>
-      <button data-filter="rendering">Rendering</button>
-      <button data-filter="research">Research</button>
+    <div class="work-toolbar">
+      <div class="section-label">
+        <strong>Selected Projects</strong>
+        <span>{String(projects.length).padStart(2, '0')} entries</span>
+      </div>
+      <div class="filters" role="group" aria-label="Project filters">
+        <button class="active" data-filter="all">All</button>
+        <button data-filter="game">Games</button>
+        <button data-filter="tool">Tools</button>
+        <button data-filter="rendering">Rendering</button>
+        <button data-filter="research">Research</button>
+      </div>
     </div>
 
     <section class="project-grid" id="projectGrid">
