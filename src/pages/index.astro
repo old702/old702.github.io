@@ -4,32 +4,19 @@ import ProjectCard from '../components/ProjectCard.astro';
 import { projects } from '../data/projects';
 ---
 <BaseLayout active="work">
-  <div class="wrap">
-    <div class="topline"><span>Portfolio / Selected Work</span><span>2026</span></div>
+  <div class="page-shell">
+    <header class="page-intro home-intro">
+      <span class="page-kicker">Portfolio · 2026</span>
+      <h1>Selected work.</h1>
+      <p>Game development, rendering research, technical art and production tools.</p>
+    </header>
 
-    <section class="work-intro">
-      <div>
-        <span class="eyebrow">Game Development · Rendering · Tools</span>
-        <h1>WORK.</h1>
-      </div>
-      <div class="work-intro-copy">
-        <strong>GAME DEVELOPER / ARTIST</strong>
-        <p>Selected projects, technical art, rendering research and production tools.</p>
-      </div>
-    </section>
-
-    <div class="work-toolbar">
-      <div class="section-label">
-        <strong>Selected Projects</strong>
-        <span>{String(projects.length).padStart(2, '0')} entries</span>
-      </div>
-      <div class="filters" role="group" aria-label="Project filters">
-        <button class="active" data-filter="all">All</button>
-        <button data-filter="game">Games</button>
-        <button data-filter="tool">Tools</button>
-        <button data-filter="rendering">Rendering</button>
-        <button data-filter="research">Research</button>
-      </div>
+    <div class="filter-row" role="group" aria-label="Project filters">
+      <button class="active" data-filter="all">All</button>
+      <button data-filter="game">Games</button>
+      <button data-filter="tool">Tools</button>
+      <button data-filter="rendering">Rendering</button>
+      <button data-filter="research">Research</button>
     </div>
 
     <section class="project-grid" id="projectGrid">
