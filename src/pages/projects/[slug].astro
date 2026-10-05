@@ -9,21 +9,45 @@ export function getStaticPaths() {
     .map((project) => ({ params: { slug: project.slug }, props: { project } }));
 }
 const { project } = Astro.props;
+const mediaCount = String(project.gallery?.length ?? 0).padStart(2, '0');
 ---
 <BaseLayout title={`${project.title} — Gallery`} description={project.meta} active="work">
   <div class="wrap">
-    <div class="topline"><a href={withBase('')}>← Back to Work</a><span>Project Gallery</span></div>
-    <header class="gallery-head">
-      <span class="eyebrow">Visual Showcase / Project Archive</span>
-      <h1>{project.title}</h1>
-      <div class="subtitle">MODELS, ENVIRONMENTS, MATERIALS AND DEVELOPMENT SHOTS.</div>
+    <div class="topline">
+      <a href={withBase('')}>← Work</a>
+      <span>Visual Archive</span>
+    </div>
+
+    <header class="gallery-head compact">
+      <div>
+        <span class="eyebrow">Project / Gallery</span>
+        <h1>{project.title}</h1>
+      </div>
+      <p>{project.meta}</p>
     </header>
-    <div class="gallery-meta"><span>Project: {project.title}</span><span>Click: Fullscreen</span><span>Media: {project.gallery?.length ?? 0} items</span></div>
-    <section class="gallery-grid">
-      {project.gallery?.map((item) => (
-        <button class:list={['gallery-card', item.size ?? 'medium']} data-lightbox data-src={withBase(item.src)} data-title={item.title} data-subtitle={item.subtitle}>
+
+    <div class="gallery-info" aria-label="Gallery information">
+      <div><span>Project</span><strong>{project.title}</strong></div>
+      <div><span>View</span><strong>Fullscreen</strong></div>
+      <div><span>Media</span><strong>{mediaCount}</strong></div>
+    </div>
+
+    <section class="gallery-grid compact-grid">
+      {project.gallery?.map((item, index) => (
+        <button
+          class="gallery-card"
+          data-lightbox
+          data-src={withBase(item.src)}
+          data-title={item.title}
+          data-subtitle={item.subtitle}
+          aria-label={`Open ${item.title} fullscreen`}
+        >
           <img src={withBase(item.src)} alt={item.title} loading="lazy" />
-          <span class="gallery-caption"><strong>{item.title}</strong><small>{item.subtitle}</small></span>
+          <span class="gallery-index">{String(index + 1).padStart(2, '0')}</span>
+          <span class="gallery-caption">
+            <strong>{item.title}</strong>
+            <small>{item.subtitle}</small>
+          </span>
         </button>
       ))}
     </section>
@@ -33,7 +57,10 @@ const { project } = Astro.props;
     <button class="lightbox-close" aria-label="Close fullscreen image">×</button>
     <figure>
       <img id="lightboxImage" alt="" />
-      <figcaption><strong id="lightboxTitle"></strong><span id="lightboxSubtitle"></span></figcaption>
+      <figcaption>
+        <strong id="lightboxTitle"></strong>
+        <span id="lightboxSubtitle"></span>
+      </figcaption>
     </figure>
   </div>
 
@@ -42,7 +69,11 @@ const { project } = Astro.props;
     const image = document.getElementById('lightboxImage');
     const title = document.getElementById('lightboxTitle');
     const subtitle = document.getElementById('lightboxSubtitle');
-    const close = () => { box.classList.remove('open'); box.setAttribute('aria-hidden', 'true'); };
+    const close = () => {
+      box.classList.remove('open');
+      box.setAttribute('aria-hidden', 'true');
+    };
+
     document.querySelectorAll('[data-lightbox]').forEach((button) => {
       button.addEventListener('click', () => {
         image.src = button.dataset.src;
@@ -53,6 +84,7 @@ const { project } = Astro.props;
         box.setAttribute('aria-hidden', 'false');
       });
     });
+
     document.querySelector('.lightbox-close').addEventListener('click', close);
     box.addEventListener('click', (event) => { if (event.target === box) close(); });
     document.addEventListener('keydown', (event) => { if (event.key === 'Escape') close(); });
