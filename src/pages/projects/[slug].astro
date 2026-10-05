@@ -12,25 +12,13 @@ const { project } = Astro.props;
 const mediaCount = String(project.gallery?.length ?? 0).padStart(2, '0');
 ---
 <BaseLayout title={`${project.title} — Gallery`} description={project.meta} active="work">
-  <div class="wrap">
-    <div class="topline">
-      <a href={withBase('')}>← Work</a>
-      <span>Visual Archive</span>
-    </div>
-
-    <header class="gallery-head compact">
-      <div>
-        <span class="eyebrow">Project / Gallery</span>
-        <h1>{project.title}</h1>
-      </div>
+  <div class="page-shell">
+    <header class="project-head">
+      <a href={withBase('')} class="article-back">← Work</a>
+      <span class="page-kicker">Project · {mediaCount} images</span>
+      <h1>{project.title}</h1>
       <p>{project.meta}</p>
     </header>
-
-    <div class="gallery-info" aria-label="Gallery information">
-      <div><span>Project</span><strong>{project.title}</strong></div>
-      <div><span>View</span><strong>Fullscreen</strong></div>
-      <div><span>Media</span><strong>{mediaCount}</strong></div>
-    </div>
 
     <section class="gallery-grid compact-grid">
       {project.gallery?.map((item, index) => (
@@ -73,7 +61,6 @@ const mediaCount = String(project.gallery?.length ?? 0).padStart(2, '0');
       box.classList.remove('open');
       box.setAttribute('aria-hidden', 'true');
     };
-
     document.querySelectorAll('[data-lightbox]').forEach((button) => {
       button.addEventListener('click', () => {
         image.src = button.dataset.src;
@@ -84,7 +71,6 @@ const mediaCount = String(project.gallery?.length ?? 0).padStart(2, '0');
         box.setAttribute('aria-hidden', 'false');
       });
     });
-
     document.querySelector('.lightbox-close').addEventListener('click', close);
     box.addEventListener('click', (event) => { if (event.target === box) close(); });
     document.addEventListener('keydown', (event) => { if (event.key === 'Escape') close(); });
