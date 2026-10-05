@@ -9,5 +9,5 @@ export const site = {
 
 export function withBase(path = '') {
   const base = import.meta.env.BASE_URL;
-  return `${base}${path.replace(/^\\//, '')}`;
+  return `${base}${path.startsWith('/') ? path.slice(1) : path}`;
 }
