@@ -19,36 +19,28 @@ interface Props {
 const props = Astro.props;
 ---
 <BaseLayout title={`${props.title} — Blog`} description={props.description} active="blog">
-  <div class="wrap">
-    <div class="topline"><span>Blog / {props.category}</span><span>Technical Note</span></div>
-    <header class="article-head">
+  <div class="article-shell">
+    <header class="article-head clean">
+      <a class="article-back" href={import.meta.env.BASE_URL + 'blog/'}>← Blog</a>
       <div class="article-meta">{props.date} · {props.readTime}{props.updated ? ` · Updated ${props.updated}` : ''}</div>
       <h1>{props.title}</h1>
-      <div class="subtitle">{props.subtitle}</div>
-      <p>{props.description}</p>
-    </header>
+      <p class="article-lede">{props.description}</p>
 
-    <div class="article-fields">
-      <div><span>Project</span><strong>{props.project}</strong></div>
-      <div><span>Topic</span><strong>{props.category}</strong></div>
-      <div><span>Platform</span><strong>{props.platform}</strong></div>
-      <div><span>Status</span><strong>{props.status}</strong></div>
-    </div>
-
-    <div class="article-layout">
-      <aside class="article-side">
-        <span>{props.articleId}</span>
+      <div class="article-tags">
+        <span>{props.project}</span>
         <span>{props.category}</span>
         <span>{props.platform}</span>
         {props.tags?.map((tag) => <span>{tag}</span>)}
-      </aside>
+      </div>
 
-      <article class="article-body"><slot /></article>
+      {props.toc.length > 0 && (
+        <nav class="article-inline-toc" aria-label="On this page">
+          <strong>On this page</strong>
+          {props.toc.map((item, i) => <a href={item.href}>{String(i + 1).padStart(2, '0')} {item.label}</a>)}
+        </nav>
+      )}
+    </header>
 
-      <aside class="article-toc">
-        <strong>On This Page</strong>
-        {props.toc.map((item, i) => <a href={item.href}>{String(i + 1).padStart(2, '0')} {item.label}</a>)}
-      </aside>
-    </div>
+    <article class="article-body clean-body"><slot /></article>
   </div>
 </BaseLayout>
