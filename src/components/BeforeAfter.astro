@@ -1,0 +1,35 @@
+---
+import { withBase } from '../data/site';
+interface Props { before: string; after: string; beforeLabel?: string; afterLabel?: string }
+const { before, after, beforeLabel = 'Before', afterLabel = 'After' } = Astro.props;
+---
+<div class="before-after" data-before-after>
+  <img class="before-image" src={withBase(before)} alt={beforeLabel} />
+  <div class="after-wrap"><img class="after-image" src={withBase(after)} alt={afterLabel} /></div>
+  <span class="compare-label before">{beforeLabel}</span>
+  <span class="compare-label after">{afterLabel}</span>
+  <span class="compare-line"></span>
+  <span class="compare-handle">↔</span>
+</div>
+<script>
+  document.querySelectorAll('[data-before-after]').forEach((node) => {
+    const root = node;
+    if (root.getAttribute('data-ready')) return;
+    root.setAttribute('data-ready', '1');
+    const after = root.querySelector('.after-wrap');
+    const line = root.querySelector('.compare-line');
+    const handle = root.querySelector('.compare-handle');
+    let dragging = false;
+    const set = (x) => {
+      const r = root.getBoundingClientRect();
+      const pct = Math.max(0, Math.min(100, ((x - r.left) / r.width) * 100));
+      after.style.clipPath = `inset(0 ${100 - pct}% 0 0)`;
+      line.style.left = `${pct}%`;
+      handle.style.left = `${pct}%`;
+    };
+    root.addEventListener('pointerdown', (e) => { dragging = true; root.setPointerCapture(e.pointerId); set(e.clientX); });
+    root.addEventListener('pointermove', (e) => { if (dragging) set(e.clientX); });
+    root.addEventListener('pointerup', () => dragging = false);
+    root.addEventListener('pointercancel', () => dragging = false);
+  });
+</script>

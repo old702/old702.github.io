@@ -1,0 +1,105 @@
+---
+import ArticleLayout from '../../layouts/ArticleLayout.astro';
+import Callout from '../../components/Callout.astro';
+import GifFigure from '../../components/GifFigure.astro';
+import BeforeAfter from '../../components/BeforeAfter.astro';
+import Metrics from '../../components/Metrics.astro';
+---
+
+<ArticleLayout
+  title="DESIGNING A FORWARD+ RENDERER AROUND MSAA AND STATIC GI."
+  subtitle="A RESTRAINED ARTICLE LAYOUT FOR ENGINEERING NOTES, DIAGRAMS, GIFS, FORMULAS, BENCHMARKS AND CODE."
+  description="Example technical article demonstrating the reusable article components included with the portfolio."
+  date="02 Oct 2026"
+  updated="04 Oct 2026"
+  readTime="12 min read"
+  articleId="ARTICLE 001"
+  project="Subtransit"
+  category="Rendering"
+  platform="Unreal Engine"
+  status="Research / Prototype"
+  tags={["Forward+", "MSAA", "GI"]}
+  toc={[
+    { label: 'Layout', href: '#layout' },
+    { label: 'Animated Demo', href: '#animated-demo' },
+    { label: 'Before / After', href: '#before-after' },
+    { label: 'Metrics', href: '#metrics' },
+    { label: 'Frame Structure', href: '#frame-structure' },
+  ]}
+>
+
+<div class="article-tldr">
+  <span>TL;DR</span>
+  <div><strong>KEY TAKEAWAY</strong><p>Use the center column for evidence: large images, motion, comparisons, benchmark summaries and implementation diagrams. Metadata stays in the edge rails.</p></div>
+</div>
+
+<h2 id="layout">LAYOUT</h2>
+<div class="subtitle">SHOWCASE PAGES ARE IMAGE-LED. ARTICLES ARE READING-LED.</div>
+
+The article body stays readable, while figures and technical components use the full central width. The left and right metadata columns remain narrow and sticky.
+
+<Callout label="Design note">
+A callout is useful for constraints, conclusions, implementation rules or caveats that should remain visible when somebody scans the page quickly.
+</Callout>
+
+<h2 id="animated-demo">ANIMATED DEMO</h2>
+<div class="subtitle">GIFS ARE USEFUL WHEN MOTION ITSELF IS THE EVIDENCE.</div>
+
+<GifFigure src="media/blog/lighting-demo.svg" alt="Animated lighting demonstration" label="FIG. 01" caption="Short looping lighting demonstration. Replace this sample with a real capture from the project." />
+
+<GifFigure src="media/blog/material-demo.svg" alt="Animated material response" label="FIG. 02" caption="Moving highlight demonstration. For long clips, use MP4/WebM instead of GIF." />
+
+<Callout label="Recommended" tone="success">
+For longer motion demonstrations, prefer muted autoplaying MP4/WebM with `loop`, `muted` and `playsinline`. GIF is most useful for short, immediate loops.
+</Callout>
+
+<h2 id="before-after">BEFORE / AFTER</h2>
+<div class="subtitle">DRAG THE DIVIDER WHEN PRECISE PIXEL-LEVEL COMPARISON MATTERS.</div>
+
+<BeforeAfter before="media/blog/before-render.svg" after="media/blog/after-render.svg" beforeLabel="Before" afterLabel="After" />
+
+<h2 id="metrics">METRICS</h2>
+<div class="subtitle">SURFACE THE IMPORTANT NUMBERS BEFORE THE FULL TABLE.</div>
+
+<Metrics items={[
+  { label: 'GPU frame', value: '6.8 ms', note: 'Example value · 1440p' },
+  { label: 'MSAA', value: '4×', note: 'Opaque geometry' },
+  { label: 'Shadowed lights', value: '6', note: 'Worst-case scene' },
+]} />
+
+| Parameter | Value | Notes |
+| --- | --- | --- |
+| Resolution | 2560 × 1440 | Native render resolution |
+| MSAA | 4× | Opaque forward pass |
+| GI | Static probes / baked | Primary indirect lighting |
+| Screen-space | SSR + GTAO | Normals + depth buffers |
+
+<h2 id="frame-structure">FRAME STRUCTURE</h2>
+<div class="subtitle">TECHNICAL RELATIONSHIPS SHOULD BE OBVIOUS AT A GLANCE.</div>
+
+```text
+Frame
+ ├─ Depth / prepass
+ ├─ HZB
+ ├─ Cluster assignment
+ ├─ Shadow data
+ ├─ Forward opaque pass
+ ├─ Screen-space effects
+ └─ Transparency / post
+```
+
+<Callout label="Caveat" tone="warning">
+Keep limitations next to the result they affect. Benchmark numbers and screenshots are often reused without the surrounding article context.
+</Callout>
+
+<details>
+<summary>IMPLEMENTATION NOTES</summary>
+Engine-specific setup, shader permutations, version caveats and reproduction notes can live here without making the main article heavier.
+</details>
+
+<details>
+<summary>TEST METHODOLOGY</summary>
+Document warm-up, capture duration, fixed camera state, GPU/CPU measurement method, and whether values are average, median or percentile.
+</details>
+
+</ArticleLayout>

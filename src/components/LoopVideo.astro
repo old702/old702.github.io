@@ -1,0 +1,13 @@
+---
+import { withBase } from '../data/site';
+interface Props { src: string; poster?: string; caption?: string }
+const { src, poster, caption } = Astro.props;
+---
+<figure class="figure">
+  <div class="figure-frame">
+    <video autoplay muted loop playsinline controls preload="metadata" poster={poster ? withBase(poster) : undefined}>
+      <source src={withBase(src)} />
+    </video>
+  </div>
+  {caption && <figcaption class="figure-caption"><span class="figure-label">VIDEO</span><span>{caption}</span></figcaption>}
+</figure>

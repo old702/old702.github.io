@@ -1,0 +1,60 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { projects } from '../../data/projects';
+import { withBase } from '../../data/site';
+
+export function getStaticPaths() {
+  return projects
+    .filter((project) => project.destination === 'gallery')
+    .map((project) => ({ params: { slug: project.slug }, props: { project } }));
+}
+const { project } = Astro.props;
+---
+<BaseLayout title={`${project.title} — Gallery`} description={project.meta} active="work">
+  <div class="wrap">
+    <div class="topline"><a href={withBase('')}>← Back to Work</a><span>Project Gallery</span></div>
+    <header class="gallery-head">
+      <span class="eyebrow">Visual Showcase / Project Archive</span>
+      <h1>{project.title}</h1>
+      <div class="subtitle">MODELS, ENVIRONMENTS, MATERIALS AND DEVELOPMENT SHOTS.</div>
+    </header>
+    <div class="gallery-meta"><span>Project: {project.title}</span><span>Click: Fullscreen</span><span>Media: {project.gallery?.length ?? 0} items</span></div>
+    <section class="gallery-grid">
+      {project.gallery?.map((item) => (
+        <button class:list={['gallery-card', item.size ?? 'medium']} data-lightbox data-src={withBase(item.src)} data-title={item.title} data-subtitle={item.subtitle}>
+          <img src={withBase(item.src)} alt={item.title} loading="lazy" />
+          <span class="gallery-caption"><strong>{item.title}</strong><small>{item.subtitle}</small></span>
+        </button>
+      ))}
+    </section>
+  </div>
+
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="lightbox-close" aria-label="Close fullscreen image">×</button>
+    <figure>
+      <img id="lightboxImage" alt="" />
+      <figcaption><strong id="lightboxTitle"></strong><span id="lightboxSubtitle"></span></figcaption>
+    </figure>
+  </div>
+
+  <script>
+    const box = document.getElementById('lightbox');
+    const image = document.getElementById('lightboxImage');
+    const title = document.getElementById('lightboxTitle');
+    const subtitle = document.getElementById('lightboxSubtitle');
+    const close = () => { box.classList.remove('open'); box.setAttribute('aria-hidden', 'true'); };
+    document.querySelectorAll('[data-lightbox]').forEach((button) => {
+      button.addEventListener('click', () => {
+        image.src = button.dataset.src;
+        image.alt = button.dataset.title;
+        title.textContent = button.dataset.title;
+        subtitle.textContent = button.dataset.subtitle;
+        box.classList.add('open');
+        box.setAttribute('aria-hidden', 'false');
+      });
+    });
+    document.querySelector('.lightbox-close').addEventListener('click', close);
+    box.addEventListener('click', (event) => { if (event.target === box) close(); });
+    document.addEventListener('keydown', (event) => { if (event.key === 'Escape') close(); });
+  </script>
+</BaseLayout>

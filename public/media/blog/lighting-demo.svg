@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675">
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#d9c78c" stop-opacity=".95"/>
+      <stop offset=".35" stop-color="#ba995a" stop-opacity=".35"/>
+      <stop offset="1" stop-color="#ba995a" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="bg" x1="0" x2="1">
+      <stop stop-color="#11161a"/>
+      <stop offset=".55" stop-color="#293036"/>
+      <stop offset="1" stop-color="#0d1013"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="675" fill="url(#bg)"/>
+  <rect x="72" y="125" width="1056" height="340" rx="2" fill="#15191d" stroke="#353b40"/>
+  <g opacity=".3" stroke="#737b80" stroke-width="2">
+    <path d="M110 495H1090"/><path d="M140 535H1060"/><path d="M170 575H1030"/>
+  </g>
+  <g fill="#d8d0ae" opacity=".9">
+    <rect x="190" y="87" width="84" height="12"/><rect x="440" y="87" width="84" height="12"/><rect x="690" y="87" width="84" height="12"/><rect x="940" y="87" width="84" height="12"/>
+  </g>
+  <circle cx="280" cy="320" r="210" fill="url(#glow)">
+    <animate attributeName="cx" values="280;920;280" dur="4s" repeatCount="indefinite"/>
+  </circle>
+  <text x="30" y="45" fill="#d8dde1" font-family="Inter,Arial" font-size="18" letter-spacing="3">LIGHTING PASS</text>
+</svg>

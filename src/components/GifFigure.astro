@@ -1,0 +1,15 @@
+---
+import { withBase } from '../data/site';
+interface Props { src: string; alt: string; label?: string; caption: string; badge?: string }
+const { src, alt, label = 'FIG.', caption, badge = 'ANIMATED GIF · LOOP' } = Astro.props;
+---
+<figure class="figure">
+  <div class="figure-frame">
+    <span class="gif-badge">{badge}</span>
+    <img src={withBase(src)} alt={alt} loading="lazy" />
+  </div>
+  <figcaption class="figure-caption">
+    <span class="figure-label">{label}</span>
+    <span>{caption}</span>
+  </figcaption>
+</figure>

@@ -1,0 +1,55 @@
+---
+import ArticleLayout from '../../layouts/ArticleLayout.astro';
+import BeforeAfter from '../../components/BeforeAfter.astro';
+import Callout from '../../components/Callout.astro';
+---
+
+<ArticleLayout
+  title="SEMANTIC MIP FILTERING FOR MATERIAL PIPELINES."
+  subtitle="NORMALS, ROUGHNESS, OPACITY AND MASKS SHOULD NOT SHARE ONE GENERIC DOWNSAMPLER."
+  description="Example article page for texture-processing research and implementation notes."
+  date="18 Sep 2026"
+  readTime="9 min read"
+  articleId="ARTICLE 002"
+  project="TexturePacker"
+  category="Texture Processing"
+  platform="C++ / D3D11"
+  status="Development"
+  tags={["Mips", "DDS", "Filtering"]}
+  toc={[
+    { label: 'Problem', href: '#problem' },
+    { label: 'Comparison', href: '#comparison' },
+    { label: 'Policy', href: '#policy' },
+  ]}
+>
+
+<h2 id="problem">PROBLEM</h2>
+<div class="subtitle">DIFFERENT MATERIAL SEMANTICS NEED DIFFERENT FILTERING RULES.</div>
+
+A single linear average is rarely enough for every texture channel. Normal maps, roughness, opacity and tint masks each preserve different information.
+
+<Callout label="Rule">
+Treat mip generation as semantic processing, then pack channels per mip after each semantic chain has been built.
+</Callout>
+
+<h2 id="comparison">COMPARISON</h2>
+<div class="subtitle">COMPARE THE RESULT AT THE SAME VIEW SCALE.</div>
+
+<BeforeAfter before="media/blog/mip-before.svg" after="media/blog/mip-after.svg" beforeLabel="Generic" afterLabel="Semantic" />
+
+<h2 id="policy">POLICY</h2>
+<div class="subtitle">MAKE THE FILTER CHOICE EXPLICIT.</div>
+
+```cpp
+MipPolicy ResolvePolicy(TextureSemantic semantic)
+{
+    switch (semantic) {
+        case TextureSemantic::Normal:    return MipPolicy::NormalAware;
+        case TextureSemantic::Roughness: return MipPolicy::VarianceAware;
+        case TextureSemantic::Opacity:   return MipPolicy::CoveragePreserve;
+        default:                         return MipPolicy::Linear;
+    }
+}
+```
+
+</ArticleLayout>

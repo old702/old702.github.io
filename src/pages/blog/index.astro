@@ -1,0 +1,42 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BlogFeature from '../../components/BlogFeature.astro';
+import BlogCard from '../../components/BlogCard.astro';
+import { posts } from '../../data/posts';
+
+const [featured, ...archive] = posts;
+---
+<BaseLayout title="Blog & Devlog" active="blog">
+  <div class="wrap blog-wrap">
+    <div class="topline"><span>Notes / Development / Research</span><span>{String(posts.length).padStart(2, '0')} entries</span></div>
+
+    <header class="blog-head">
+      <div>
+        <span class="eyebrow">Writing / Research archive</span>
+        <h1>BLOG.</h1>
+      </div>
+      <div class="blog-head-copy">
+        <div class="subtitle">TECHNICAL NOTES, DEVELOPMENT LOGS AND PROJECT BREAKDOWNS.</div>
+        <p>Rendering research, tools, experiments and implementation notes. Written as working records rather than polished marketing posts.</p>
+      </div>
+    </header>
+
+    <section class="blog-latest" aria-labelledby="latest-heading">
+      <div class="blog-section-line">
+        <strong id="latest-heading">Latest</strong>
+        <span>Most recent note</span>
+      </div>
+      {featured && <BlogFeature post={featured} />}
+    </section>
+
+    <section class="blog-archive" aria-labelledby="archive-heading">
+      <div class="blog-section-line">
+        <strong id="archive-heading">Archive</strong>
+        <span>{String(archive.length).padStart(2, '0')} older entries</span>
+      </div>
+      <div class="post-list">
+        {archive.map((post) => <BlogCard post={post} />)}
+      </div>
+    </section>
+  </div>
+</BaseLayout>

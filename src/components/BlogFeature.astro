@@ -1,0 +1,22 @@
+---
+import type { Post } from '../data/posts';
+import { withBase } from '../data/site';
+interface Props { post: Post }
+const { post } = Astro.props;
+---
+<a class="blog-feature" href={withBase(`blog/${post.slug}/`)}>
+  <span class="blog-feature-media">
+    <img src={withBase(post.thumbnail)} alt="" loading="eager" />
+    <span class="blog-feature-index">{post.number}</span>
+  </span>
+  <span class="blog-feature-copy">
+    <span class="blog-feature-meta">
+      <span>{post.category}</span>
+      <span>{post.date}</span>
+      <span>{post.readTime}</span>
+    </span>
+    <span class="blog-feature-title">{post.title}</span>
+    <span class="blog-feature-excerpt">{post.excerpt}</span>
+    <span class="blog-feature-link">Read article <b>↗</b></span>
+  </span>
+</a>

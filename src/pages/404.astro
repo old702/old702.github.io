@@ -1,0 +1,11 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { withBase } from '../data/site';
+---
+<BaseLayout title="404 — Page not found">
+  <div class="wrap error-page">
+    <span class="eyebrow">404</span>
+    <h1>PAGE NOT FOUND.</h1>
+    <a href={withBase('')}>← Back to Work</a>
+  </div>
+</BaseLayout>

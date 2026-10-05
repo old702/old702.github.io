@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675">
+  <defs>
+    <radialGradient id="sphere" cx="35%" cy="30%" r="72%">
+      <stop offset="0" stop-color="#c7ced3"/>
+      <stop offset=".18" stop-color="#76818a"/>
+      <stop offset=".58" stop-color="#3a4248"/>
+      <stop offset="1" stop-color="#15191d"/>
+    </radialGradient>
+    <radialGradient id="spec" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#fff" stop-opacity=".9"/>
+      <stop offset=".28" stop-color="#d9e0e5" stop-opacity=".45"/>
+      <stop offset="1" stop-color="#d9e0e5" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="80" height="80" patternUnits="userSpaceOnUse">
+      <rect width="80" height="80" fill="#181b1e"/>
+      <rect width="40" height="40" fill="#202428"/>
+      <rect x="40" y="40" width="40" height="40" fill="#202428"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="675" fill="url(#grid)"/>
+  <circle cx="600" cy="360" r="220" fill="url(#sphere)" stroke="#515a61" stroke-width="2"/>
+  <circle cx="500" cy="275" r="100" fill="url(#spec)">
+    <animate attributeName="cx" values="480;720;480" dur="3.6s" repeatCount="indefinite"/>
+    <animate attributeName="cy" values="260;390;260" dur="3.6s" repeatCount="indefinite"/>
+  </circle>
+  <text x="30" y="45" fill="#d8dde1" font-family="Inter,Arial" font-size="18" letter-spacing="3">MATERIAL RESPONSE</text>
+</svg>

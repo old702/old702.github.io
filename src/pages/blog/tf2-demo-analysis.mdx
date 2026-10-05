@@ -1,0 +1,50 @@
+---
+import ArticleLayout from '../../layouts/ArticleLayout.astro';
+import Callout from '../../components/Callout.astro';
+---
+
+<ArticleLayout
+  title="READING TIMING AND INPUT BEHAVIOR FROM TF2 DEMOS."
+  subtitle="A VISUAL ANALYSIS WORKFLOW FOR COMMAND TIMING, PHASE AND REPLAY DIAGNOSTICS."
+  description="Sample article route used by a homepage tile that links directly to an article instead of a gallery."
+  date="07 Sep 2026"
+  readTime="7 min read"
+  articleId="ARTICLE 003"
+  project="TF2 Tools"
+  category="Tools / Analysis"
+  platform="C++"
+  status="Research"
+  tags={["Demos", "Timing", "Analysis"]}
+  toc={[
+    { label: 'Goal', href: '#goal' },
+    { label: 'Timeline', href: '#timeline' },
+    { label: 'Interpretation', href: '#interpretation' },
+  ]}
+>
+
+<h2 id="goal">GOAL</h2>
+<div class="subtitle">TURN DEMO DATA INTO A TIMELINE THAT IS EASY TO INSPECT.</div>
+
+A homepage project tile does not need to lead to a gallery. Research-heavy work can link directly into a technical article like this one.
+
+<h2 id="timeline">TIMELINE</h2>
+<div class="subtitle">ALIGN COMMANDS, EVENTS AND VISUAL MARKERS.</div>
+
+```text
+Tick       1201   1202   1203   1204   1205
+UserCmd      ●      ●      ●      ●      ●
+Attack              ├──────┤
+Event                      ▲
+Playback                           │
+```
+
+<Callout label="Interpretation">
+Keep raw measurements separate from derived conclusions. The article layout is designed to support both the evidence and the explanation around it.
+</Callout>
+
+<h2 id="interpretation">INTERPRETATION</h2>
+<div class="subtitle">USE FIGURES AND CAPTIONS TO EXPLAIN WHAT THE TIMELINE ACTUALLY MEANS.</div>
+
+The same article component system can hold charts, GIFs, screenshots, code fragments and before/after comparisons without changing the site structure.
+
+</ArticleLayout>
