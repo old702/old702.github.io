@@ -1,5 +1,4 @@
 export type Post = {
-  number: string;
   slug: string;
   title: string;
   category: string;
@@ -11,7 +10,6 @@ export type Post = {
 
 export const posts: Post[] = [
   {
-    number: '003',
     slug: 'forward-plus-renderer',
     title: 'Designing a Forward+ renderer around MSAA and static GI',
     category: 'Rendering / UE5',
@@ -21,7 +19,6 @@ export const posts: Post[] = [
     thumbnail: 'media/blog/forward-plus-cover.svg',
   },
   {
-    number: '002',
     slug: 'semantic-mip-filtering',
     title: 'Semantic mip filtering for material pipelines',
     category: 'Texture Processing',
@@ -31,7 +28,6 @@ export const posts: Post[] = [
     thumbnail: 'media/blog/mip-cover.svg',
   },
   {
-    number: '001',
     slug: 'tf2-demo-analysis',
     title: 'Reading timing and input behavior from TF2 demos',
     category: 'Tools / Analysis',
