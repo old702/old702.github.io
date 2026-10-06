@@ -1,12 +1,12 @@
 ---
-import { withBase } from '../data/site';
+import { site, withBase } from '../data/site';
 interface Props { active?: 'work' | 'about' | 'blog' }
 const { active = 'work' } = Astro.props;
 ---
 <header class="site-header">
   <div class="header-anchor">
     <div class="nav-panel">
-      <a class="brand-icon" href={withBase('')} aria-label="Home">AI</a>
+      <a class="brand-icon" href={withBase('')} aria-label="Home"><img src={site.avatar} alt="" /></a>
       <nav class="main-nav" aria-label="Main navigation">
         <a class:list={[{ active: active === 'work' }]} href={withBase('')}>Work</a>
         <a class:list={[{ active: active === 'blog' }]} href={withBase('blog/')}>Blog</a>
