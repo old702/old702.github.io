@@ -34,9 +34,7 @@ const props = Astro.props;
 
       <div class="article-context">
         <span>{props.project}</span>
-        <span>{props.platform}</span>
         <span>{props.status}</span>
-        {props.tags?.map((tag) => <span>{tag}</span>)}
       </div>
 
       {props.toc.length > 0 && (

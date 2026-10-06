@@ -2,39 +2,74 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import { projects } from '../data/projects';
+
+const galleryProjects = projects.filter((project) => project.destination === 'gallery');
+const articleProjects = projects.filter((project) => project.destination === 'article');
 ---
 <BaseLayout active="work">
-  <div class="page-shell narrow-page work-page">
+  <div class="page-shell work-page">
     <header class="page-intro home-intro">
-      <span class="page-kicker">Portfolio · 2026</span>
+      <span class="page-kicker">Portfolio</span>
       <h1>Selected work.</h1>
-      <p>Game development, rendering research, technical art and production tools.</p>
+      <p>Selected environments, production tools, visual research and personal artwork.</p>
     </header>
 
-    <div class="filter-row" role="group" aria-label="Project filters">
-      <button class="active" data-filter="all">All</button>
-      <button data-filter="game">Games</button>
-      <button data-filter="tool">Tools</button>
-      <button data-filter="rendering">Rendering</button>
-      <button data-filter="research">Research</button>
+    <div class="filter-row" role="group" aria-label="Work categories">
+      <button type="button" data-filter="environment-art" aria-pressed="false">Environment Art</button>
+      <button type="button" data-filter="tools" aria-pressed="false">Tools</button>
+      <button type="button" data-filter="research" aria-pressed="false">Research</button>
+      <button type="button" data-filter="fan-art" aria-pressed="false">Fan Art</button>
     </div>
 
-    <section class="project-grid" id="projectGrid">
-      {projects.map((project, index) => <ProjectCard project={project} index={index} />)}
+    <section class="work-section" data-work-section aria-labelledby="galleryHeading">
+      <div class="work-section-heading">
+        <h2 id="galleryHeading">Portfolio galleries</h2>
+        <p>Image-led projects and selected visual work.</p>
+      </div>
+      <div class="project-grid">
+        {galleryProjects.map((project, index) => <ProjectCard project={project} index={index} />)}
+      </div>
     </section>
+
+    <section class="work-section" data-work-section aria-labelledby="researchHeading">
+      <div class="work-section-heading">
+        <h2 id="researchHeading">Research &amp; articles</h2>
+        <p>Technical notes and development research published in Devblog.</p>
+      </div>
+      <div class="research-list">
+        {articleProjects.map((project, index) => <ProjectCard project={project} index={galleryProjects.length + index} />)}
+      </div>
+    </section>
+
+    <p class="empty-work" id="emptyWork" hidden>No projects in this category yet.</p>
   </div>
 
   <script>
-    document.querySelectorAll('[data-filter]').forEach((button) => {
+    const filters = Array.from(document.querySelectorAll<HTMLButtonElement>('.filter-row [data-filter]'));
+    const cards = Array.from(document.querySelectorAll<HTMLElement>('.work-page [data-categories]'));
+    const sections = Array.from(document.querySelectorAll<HTMLElement>('[data-work-section]'));
+    const empty = document.querySelector<HTMLElement>('#emptyWork');
+    let selected = '';
+
+    for (const button of filters) {
       button.addEventListener('click', () => {
-        const filter = button.dataset.filter;
-        document.querySelectorAll('[data-filter]').forEach((b) => b.classList.remove('active'));
-        button.classList.add('active');
-        document.querySelectorAll('[data-categories]').forEach((card) => {
-          const categories = card.dataset.categories.split(' ');
-          card.hidden = filter !== 'all' && !categories.includes(filter);
-        });
+        selected = selected === button.dataset.filter ? '' : (button.dataset.filter || '');
+        for (const filter of filters) {
+          const isActive = selected !== '' && filter.dataset.filter === selected;
+          filter.classList.toggle('active', isActive);
+          filter.setAttribute('aria-pressed', String(isActive));
+        }
+        let visible = 0;
+        for (const card of cards) {
+          const match = !selected || (card.dataset.categories || '').split(' ').includes(selected);
+          card.hidden = !match;
+          if (match) visible++;
+        }
+        for (const section of sections) {
+          section.hidden = !section.querySelector('[data-categories]:not([hidden])');
+        }
+        if (empty) empty.hidden = visible !== 0;
       });
-    });
+    }
   </script>
 </BaseLayout>
