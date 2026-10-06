@@ -18,10 +18,10 @@ interface Props {
 }
 const props = Astro.props;
 ---
-<BaseLayout title={`${props.title} — Blog`} description={props.description} active="blog">
+<BaseLayout title={`${props.title} — Devblog`} description={props.description} active="blog">
   <div class="article-shell">
     <header class="article-head clean">
-      <a class="article-back" href={import.meta.env.BASE_URL + 'blog/'}>← Blog</a>
+      <a class="article-back" href={import.meta.env.BASE_URL + 'blog/'}>← Devblog</a>
       <div class="article-meta">
         <span>{props.date}</span>
         <span>{props.category}</span>
