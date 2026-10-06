@@ -1,6 +1,16 @@
-# Portfolio / Blog / Project Showcase
+# old702.github.io
 
-Astro + MDX portfolio prepared for GitHub Pages. The visual system is based on the latest dark prototype: Inter Tight Bold uppercase headings with increased tracking, gray Inter Tight Bold subtitles, Inter for UI/body text, ArtStation-like work tiles, dedicated project galleries, fullscreen image viewing, technical blog articles, GIF figures, and before/after comparisons.
+Personal portfolio, project gallery and **Devblog** built with Astro + MDX and deployed through GitHub Pages.
+
+## Current structure
+
+- **Work** — compact square project grid.
+- **Project galleries** — square image grid with fullscreen lightbox, keyboard navigation and swipe.
+- **Devblog** — technical notes and project breakdowns.
+- **Articles** — MDX with reusable media/technical components.
+- **About** — profile, experience and configured contact links.
+
+The site uses a restrained dark editorial layout with Inter Tight Bold as the dominant display face.
 
 ## Local development
 
@@ -16,61 +26,34 @@ npm run build
 npm run preview
 ```
 
-After the first `npm install`, commit the generated `package-lock.json` for reproducible builds.
+## Deployment
 
-## Publish at `USERNAME.github.io`
+Every push to `main` triggers:
 
-1. Create a GitHub repository named exactly `USERNAME.github.io`.
-2. Push this project to the `main` branch.
-3. Open **Settings → Pages**.
-4. Under **Build and deployment → Source**, choose **GitHub Actions**.
-5. The included `.github/workflows/deploy.yml` builds and deploys the site automatically.
+`.github/workflows/deploy.yml`
 
-The workflow automatically sets `SITE_URL=https://USERNAME.github.io` from the repository owner.
+The workflow builds the Astro site and deploys it to GitHub Pages. Deployment concurrency is enabled, so an older run is cancelled when a newer commit supersedes it.
 
-## If you publish from a normal repository
+Live site:
 
-For `https://USERNAME.github.io/my-portfolio/`, set this in `.github/workflows/deploy.yml`:
+`https://old702.github.io/`
 
-```yaml
-env:
-  SITE_URL: https://${{ github.repository_owner }}.github.io
-  BASE_PATH: /my-portfolio
-```
+## Editing
 
-All internal links and media use `import.meta.env.BASE_URL`, so the site remains base-path safe.
+Main content files:
 
-## Where to edit content
+- `src/data/site.ts` — identity, avatar and optional contacts.
+- `src/data/projects.ts` — Work projects and galleries.
+- `src/data/posts.ts` — Devblog index metadata.
+- `src/pages/blog/*.mdx` — article bodies.
+- `public/media/projects/` — project media.
+- `public/media/blog/` — Devblog/article media.
+- `src/styles/global.css` — consolidated visual system.
 
-- `src/data/site.ts` — name, role, contact links.
-- `src/data/projects.ts` — homepage tiles and gallery projects.
-- `src/data/posts.ts` — blog index metadata.
-- `src/pages/blog/*.mdx` — article content.
-- `public/media/projects/` — gallery images.
-- `public/media/blog/` — article covers, GIFs, comparison images.
-- `src/styles/global.css` — visual system.
+For complete instructions, examples and safe editing workflow, see:
 
-## Project tile destinations
+**[CONTENT_GUIDE_RU.md](CONTENT_GUIDE_RU.md)**
 
-A homepage tile can open either a gallery or an article:
+## Route note
 
-```ts
-destination: 'gallery'
-```
-
-or:
-
-```ts
-destination: 'article',
-article: 'forward-plus-renderer'
-```
-
-## Replace placeholder media
-
-The included SVG images are intentionally simple placeholders. You can replace them while keeping the same filenames, or update paths in `src/data/projects.ts` / `src/data/posts.ts`.
-
-For short motion demonstrations, GIF works directly. For longer clips, prefer MP4/WebM with `autoplay muted loop playsinline` to reduce file size.
-
-## Blog layout
-
-The blog index uses an editorial dark layout inspired by the restrained structure of Shadefall: a large latest-post feature followed by a chronological archive with compact media previews. Blog metadata is defined in `src/data/posts.ts`; article bodies remain MDX files under `src/pages/blog/`.
+The public UI is named **Devblog**, but the route intentionally remains `/blog/` for stable existing links.
