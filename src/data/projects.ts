@@ -9,7 +9,7 @@ export type Project = {
   meta: string;
   description?: string;
   categories: string[];
-  cover: string;
+  tileCover: string;
   destination: 'gallery' | 'article';
   article?: string;
   gallery?: GalleryItem[];
@@ -22,7 +22,7 @@ export const projects: Project[] = [
     meta: 'Environment Art',
     description: 'An ongoing subway and tram simulation project with a focus on transit environments, atmosphere, and real-time lighting.',
     categories: ['environment-art'],
-    cover: 'media/projects/subtransit/cover.svg',
+    tileCover: 'media/projects/subtransit/tile-cover.svg',
     destination: 'gallery',
     gallery: [
       { src: 'media/projects/subtransit/01.svg', title: 'Station Hall' },
@@ -39,7 +39,7 @@ export const projects: Project[] = [
     meta: 'Tools',
     description: 'A standalone texture processing application for material workflows, previews, channel packing, and mipmap generation.',
     categories: ['tools'],
-    cover: 'media/projects/texturepacker/cover.svg',
+    tileCover: 'media/projects/texturepacker/tile-cover.svg',
     destination: 'gallery',
     gallery: [
       { src: 'media/projects/texturepacker/01.svg', title: 'Main UI' },
@@ -54,7 +54,7 @@ export const projects: Project[] = [
     meta: 'Tools',
     description: 'A collection of Blender utilities and workflow experiments for asset preparation, export, and procedural modeling.',
     categories: ['tools'],
-    cover: 'media/projects/blender-tools/cover.svg',
+    tileCover: 'media/projects/blender-tools/tile-cover.svg',
     destination: 'gallery',
     gallery: [
       { src: 'media/projects/blender-tools/01.svg', title: 'Exporter' },
@@ -67,7 +67,7 @@ export const projects: Project[] = [
     title: 'TF2 Tools',
     meta: 'Research',
     categories: ['research'],
-    cover: 'media/projects/tf2-tools/cover.svg',
+    tileCover: 'media/projects/tf2-tools/tile-cover.svg',
     destination: 'article',
     article: 'tf2-demo-analysis',
   },
@@ -76,7 +76,7 @@ export const projects: Project[] = [
     title: 'Realtime Graphics',
     meta: 'Research',
     categories: ['research'],
-    cover: 'media/projects/realtime-graphics/cover.svg',
+    tileCover: 'media/projects/realtime-graphics/tile-cover.svg',
     destination: 'article',
     article: 'forward-plus-renderer',
   },
@@ -86,7 +86,7 @@ export const projects: Project[] = [
     meta: 'Tools',
     description: 'A selection of small production utilities and experiments focused on asset management and content workflows.',
     categories: ['tools'],
-    cover: 'media/projects/pipeline-tools/cover.svg',
+    tileCover: 'media/projects/pipeline-tools/tile-cover.svg',
     destination: 'gallery',
     gallery: [
       { src: 'media/projects/pipeline-tools/01.svg', title: 'Tooling Overview' },

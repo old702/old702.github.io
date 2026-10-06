@@ -10,7 +10,7 @@ const href = isArticle
 ---
 <a class:list={['project-card', { 'is-article': isArticle }]} href={href} data-categories={project.categories.join(' ')}>
   <span class="project-thumb">
-    <img src={withBase(project.cover)} alt="" loading={index < 4 ? 'eager' : 'lazy'} />
+    <img src={withBase(project.tileCover)} alt="" loading={index < 4 ? 'eager' : 'lazy'} />
   </span>
   <span class="project-copy">
     <span class="project-format">{isArticle ? 'Devblog article' : 'Portfolio gallery'}</span>
