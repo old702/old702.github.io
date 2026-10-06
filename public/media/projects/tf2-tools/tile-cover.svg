@@ -1,10 +1,22 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900">
-<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#211713"/><stop offset="1" stop-color="#3a241c"/></linearGradient></defs>
-<rect width="1600" height="900" fill="url(#g)"/>
-<rect x="90" y="100" width="1420" height="700" fill="none" stroke="#ffffff18" stroke-width="2"/>
-<circle cx="1160" cy="280" r="170" fill="#835445" opacity=".34"/>
-<path d="M100 700 L600 420 L980 530 L1510 260" fill="none" stroke="#ffffff22" stroke-width="14"/>
-<path d="M100 760 L620 520 L1030 620 L1510 360" fill="none" stroke="#ffffff10" stroke-width="6"/>
-<text x="120" y="160" fill="#ffffffcc" font-family="Arial, sans-serif" font-size="34" letter-spacing="8">TF2 TOOLS</text>
-<text x="120" y="208" fill="#ffffff66" font-family="Arial, sans-serif" font-size="18" letter-spacing="4">PLACEHOLDER MEDIA — REPLACE WITH FINAL PROJECT IMAGE</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200">
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+    <stop stop-color="#17110f"/>
+    <stop offset="1" stop-color="#35231c"/>
+  </linearGradient>
+  <radialGradient id="hot">
+    <stop stop-color="#b36f51" stop-opacity=".55"/>
+    <stop offset="1" stop-color="#835445" stop-opacity="0"/>
+  </radialGradient>
+</defs>
+<rect width="1200" height="1200" fill="url(#bg)"/>
+<circle cx="855" cy="315" r="330" fill="url(#hot)"/>
+<g stroke="#d9d2cc" stroke-opacity=".19">
+  <path d="M145 330H1055M145 470H1055M145 610H1055M145 750H1055M145 890H1055" stroke-width="2"/>
+  <path d="M255 250V970M455 250V970M655 250V970M855 250V970" stroke-width="2"/>
+</g>
+<path d="M145 785 245 785 245 615 360 615 360 720 505 720 505 510 650 510 650 650 820 650 820 405 1055 405" fill="none" stroke="#d98b68" stroke-opacity=".75" stroke-width="11"/>
+<g fill="#f0c1a9">
+  <circle cx="245" cy="615" r="12"/><circle cx="505" cy="510" r="12"/><circle cx="820" cy="405" r="12"/>
+</g>
 </svg>

@@ -1,10 +1,20 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900">
-<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#11161a"/><stop offset="1" stop-color="#34383b"/></linearGradient></defs>
-<rect width="1600" height="900" fill="url(#g)"/>
-<rect x="90" y="100" width="1420" height="700" fill="none" stroke="#ffffff18" stroke-width="2"/>
-<circle cx="1160" cy="280" r="170" fill="#746c5d" opacity=".34"/>
-<path d="M100 700 L600 420 L980 530 L1510 260" fill="none" stroke="#ffffff22" stroke-width="14"/>
-<path d="M100 760 L620 520 L1030 620 L1510 360" fill="none" stroke="#ffffff10" stroke-width="6"/>
-<text x="120" y="160" fill="#ffffffcc" font-family="Arial, sans-serif" font-size="34" letter-spacing="8">SUBTRANSIT</text>
-<text x="120" y="208" fill="#ffffff66" font-family="Arial, sans-serif" font-size="18" letter-spacing="4">PLACEHOLDER MEDIA — REPLACE WITH FINAL PROJECT IMAGE</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200">
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+    <stop stop-color="#111519"/>
+    <stop offset=".58" stop-color="#24292d"/>
+    <stop offset="1" stop-color="#3a3c3c"/>
+  </linearGradient>
+  <radialGradient id="lamp">
+    <stop stop-color="#d3bd8c" stop-opacity=".72"/>
+    <stop offset="1" stop-color="#8f7a55" stop-opacity="0"/>
+  </radialGradient>
+</defs>
+<rect width="1200" height="1200" fill="url(#bg)"/>
+<circle cx="920" cy="260" r="300" fill="url(#lamp)"/>
+<path d="M0 930 440 580 1200 435V1200H0Z" fill="#171b1e"/>
+<path d="M0 1060 478 710 1200 590" fill="none" stroke="#9a9b95" stroke-opacity=".34" stroke-width="24"/>
+<path d="M0 1125 500 790 1200 680" fill="none" stroke="#d2cbc0" stroke-opacity=".12" stroke-width="9"/>
+<path d="M195 825 545 620M335 905 675 665M505 975 820 710M695 1018 970 750" stroke="#e5e1d9" stroke-opacity=".11" stroke-width="8"/>
+<rect x="72" y="72" width="1056" height="1056" fill="none" stroke="#fff" stroke-opacity=".055" stroke-width="2"/>
 </svg>
