@@ -1,5 +1,6 @@
 ---
 import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
 import { site } from '../data/site';
 import '../styles/global.css';
 interface Props {
@@ -34,5 +35,6 @@ const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).toString(
   <body>
     <Header active={active} />
     <main><slot /></main>
+    <Footer />
   </body>
 </html>
