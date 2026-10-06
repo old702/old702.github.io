@@ -4,6 +4,7 @@ export const site = {
   description: 'Game development, technical art, real-time rendering, tools and production experiments.',
   email: 'your@email.com',
   github: 'https://github.com/old702',
+  avatar: 'https://avatars.githubusercontent.com/u/9538804?v=4',
   artstation: 'https://www.artstation.com/YOUR_USERNAME',
 };
 
