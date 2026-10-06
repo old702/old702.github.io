@@ -105,6 +105,7 @@ h3,
   align-items: center;
   gap: 1px;
   padding: 4px;
+  border-radius: 11px;
   background: rgba(18,20,22,.94);
 }
 
@@ -114,6 +115,7 @@ h3,
   flex: 0 0 30px;
   display: block;
   overflow: hidden;
+  border-radius: 7px;
   background: transparent;
 }
 
@@ -131,6 +133,7 @@ h3,
 
 .main-nav a {
   padding: 8px 9px;
+  border-radius: 7px;
   color: #858c92;
   font: 700 11px/1 var(--display);
   letter-spacing: -.01em;
