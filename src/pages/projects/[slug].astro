@@ -20,22 +20,16 @@ const mediaCount = String(project.gallery?.length ?? 0).padStart(2, '0');
       <p>{project.meta}</p>
     </header>
 
-    <section class="gallery-grid compact-grid">
-      {project.gallery?.map((item, index) => (
+    <section class="gallery-grid compact-grid" aria-label={`${project.title} gallery`}>
+      {project.gallery?.map((item) => (
         <button
           class="gallery-card"
           data-lightbox
           data-src={withBase(item.src)}
           data-title={item.title}
-          data-subtitle={item.subtitle}
           aria-label={`Open ${item.title} fullscreen`}
         >
           <img src={withBase(item.src)} alt={item.title} loading="lazy" />
-          <span class="gallery-index">{String(index + 1).padStart(2, '0')}</span>
-          <span class="gallery-caption">
-            <strong>{item.title}</strong>
-            <small>{item.subtitle}</small>
-          </span>
         </button>
       ))}
     </section>
@@ -43,36 +37,92 @@ const mediaCount = String(project.gallery?.length ?? 0).padStart(2, '0');
 
   <div class="lightbox" id="lightbox" aria-hidden="true">
     <button class="lightbox-close" aria-label="Close fullscreen image">×</button>
-    <figure>
+    <button class="lightbox-nav lightbox-prev" aria-label="Previous image">←</button>
+    <button class="lightbox-nav lightbox-next" aria-label="Next image">→</button>
+
+    <div class="lightbox-stage">
       <img id="lightboxImage" alt="" />
-      <figcaption>
-        <strong id="lightboxTitle"></strong>
-        <span id="lightboxSubtitle"></span>
-      </figcaption>
-    </figure>
+    </div>
+
+    <div class="lightbox-counter" id="lightboxCounter" aria-live="polite">01 / {mediaCount}</div>
   </div>
 
   <script>
     const box = document.getElementById('lightbox');
     const image = document.getElementById('lightboxImage');
-    const title = document.getElementById('lightboxTitle');
-    const subtitle = document.getElementById('lightboxSubtitle');
+    const counter = document.getElementById('lightboxCounter');
+    const items = Array.from(document.querySelectorAll('[data-lightbox]'));
+    const prev = document.querySelector('.lightbox-prev');
+    const next = document.querySelector('.lightbox-next');
+    const closeButton = document.querySelector('.lightbox-close');
+
+    let currentIndex = 0;
+    let pointerStartX = 0;
+
+    const render = (index) => {
+      if (!items.length) return;
+      currentIndex = (index + items.length) % items.length;
+      const item = items[currentIndex];
+      image.src = item.dataset.src;
+      image.alt = item.dataset.title || '';
+      counter.textContent = `${String(currentIndex + 1).padStart(2, '0')} / ${String(items.length).padStart(2, '0')}`;
+    };
+
+    const open = (index) => {
+      render(index);
+      box.classList.add('open');
+      box.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('lightbox-open');
+    };
+
     const close = () => {
       box.classList.remove('open');
       box.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('lightbox-open');
     };
-    document.querySelectorAll('[data-lightbox]').forEach((button) => {
-      button.addEventListener('click', () => {
-        image.src = button.dataset.src;
-        image.alt = button.dataset.title;
-        title.textContent = button.dataset.title;
-        subtitle.textContent = button.dataset.subtitle;
-        box.classList.add('open');
-        box.setAttribute('aria-hidden', 'false');
-      });
+
+    const previous = () => render(currentIndex - 1);
+    const following = () => render(currentIndex + 1);
+
+    items.forEach((button, index) => {
+      button.addEventListener('click', () => open(index));
     });
-    document.querySelector('.lightbox-close').addEventListener('click', close);
-    box.addEventListener('click', (event) => { if (event.target === box) close(); });
-    document.addEventListener('keydown', (event) => { if (event.key === 'Escape') close(); });
+
+    prev.addEventListener('click', (event) => {
+      event.stopPropagation();
+      previous();
+    });
+
+    next.addEventListener('click', (event) => {
+      event.stopPropagation();
+      following();
+    });
+
+    closeButton.addEventListener('click', (event) => {
+      event.stopPropagation();
+      close();
+    });
+
+    box.addEventListener('click', (event) => {
+      if (event.target === box) close();
+    });
+
+    box.addEventListener('pointerdown', (event) => {
+      pointerStartX = event.clientX;
+    });
+
+    box.addEventListener('pointerup', (event) => {
+      const delta = event.clientX - pointerStartX;
+      if (Math.abs(delta) < 48) return;
+      if (delta > 0) previous();
+      else following();
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (!box.classList.contains('open')) return;
+      if (event.key === 'Escape') close();
+      if (event.key === 'ArrowLeft') previous();
+      if (event.key === 'ArrowRight') following();
+    });
   </script>
 </BaseLayout>
