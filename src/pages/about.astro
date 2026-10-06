@@ -30,9 +30,9 @@ import { site } from '../data/site';
       <div class="about-section">
         <h2>Contact</h2>
         <div class="simple-links">
-          <a href={`mailto:${site.email}`}><span>Email</span><small>{site.email}</small></a>
           <a href={site.github}><span>GitHub</span><small>old702 ↗</small></a>
-          <a href={site.artstation}><span>ArtStation</span><small>Profile ↗</small></a>
+          {site.artstation && <a href={site.artstation}><span>ArtStation</span><small>Profile ↗</small></a>}
+          {site.email && <a href={`mailto:${site.email}`}><span>Email</span><small>{site.email}</small></a>}
         </div>
       </div>
     </section>
