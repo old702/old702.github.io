@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { devProjects } from '../../data/devProjects';
+import { withBase } from '../../data/site';
+---
+<BaseLayout title="Projects" active="projects">
+  <div class="page-shell narrow-page section-page">
+    <header class="page-intro">
+      <span class="page-kicker">Development</span>
+      <h1>Projects.</h1>
+      <p>Long-running development and research projects behind the individual experiments, articles and portfolio work.</p>
+    </header>
+    <section class="projects-overview" aria-label="Development projects">
+      {devProjects.map((project) => (
+        <article class="project-overview">
+          <h2>{project.title}</h2>
+          <span class="project-overview-meta">{project.area}</span>
+          <a class="project-overview-media" href={withBase(project.href)} aria-label={project.title}>
+            <img src={withBase(project.image)} alt="" loading="lazy" />
+          </a>
+          <p>{project.description}</p>
+          <a class="project-overview-link" href={withBase(project.href)}>{project.linkLabel} →</a>
+        </article>
+      ))}
+    </section>
+  </div>
+</BaseLayout>

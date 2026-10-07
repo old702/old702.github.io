@@ -1,6 +1,6 @@
 ---
 import { site, withBase } from '../data/site';
-interface Props { active?: 'work' | 'about' | 'blog' }
+interface Props { active?: 'work' | 'articles' | 'projects' | 'about' }
 const { active = 'work' } = Astro.props;
 ---
 <header class="site-header">
@@ -9,7 +9,8 @@ const { active = 'work' } = Astro.props;
       <a class="brand-icon" href={withBase('')} aria-label="Home"><img src={site.avatar} alt="" /></a>
       <nav class="main-nav" aria-label="Main navigation">
         <a class:list={[{ active: active === 'work' }]} href={withBase('')}>Work</a>
-        <a class:list={[{ active: active === 'blog' }]} href={withBase('blog/')}>Devblog</a>
+        <a class:list={[{ active: active === 'articles' }]} href={withBase('articles/')}>Articles</a>
+        <a class:list={[{ active: active === 'projects' }]} href={withBase('projects/')}>Projects</a>
         <a class:list={[{ active: active === 'about' }]} href={withBase('about/')}>About</a>
       </nav>
     </div>

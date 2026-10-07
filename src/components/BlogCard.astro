@@ -4,7 +4,7 @@ import { withBase } from '../data/site';
 interface Props { post: Post }
 const { post } = Astro.props;
 ---
-<a class="post-card" href={withBase(`blog/${post.slug}/`)}>
+<a class="post-card" href={withBase(`articles/${post.slug}/`)}>
   <span class="post-thumb"><img src={withBase(post.thumbnail)} alt="" loading="lazy" /></span>
   <span class="post-main">
     <span class="post-meta-line">{post.date} · {post.category} · {post.readTime}</span>

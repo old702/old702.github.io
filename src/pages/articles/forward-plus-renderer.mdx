@@ -28,11 +28,11 @@ import Metrics from '../../components/Metrics.astro';
 
 <div class="article-tldr">
   <span>TL;DR</span>
-  <div><strong>KEY TAKEAWAY</strong><p>Use the center column for evidence: large images, motion, comparisons, benchmark summaries and implementation diagrams. Metadata stays in the edge rails.</p></div>
+  <div><strong>Key takeaway</strong><p>Use the center column for evidence: large images, motion, comparisons, benchmark summaries and implementation diagrams. Metadata stays in the edge rails.</p></div>
 </div>
 
-<h2 id="layout">LAYOUT</h2>
-<div class="subtitle">SHOWCASE PAGES ARE IMAGE-LED. ARTICLES ARE READING-LED.</div>
+<h2 id="layout">Layout</h2>
+<div class="subtitle">Showcase pages are image-led. Articles are reading-led.</div>
 
 The article body stays readable, while figures and technical components use the full central width. The left and right metadata columns remain narrow and sticky.
 
@@ -40,8 +40,8 @@ The article body stays readable, while figures and technical components use the 
 A callout is useful for constraints, conclusions, implementation rules or caveats that should remain visible when somebody scans the page quickly.
 </Callout>
 
-<h2 id="animated-demo">ANIMATED DEMO</h2>
-<div class="subtitle">GIFS ARE USEFUL WHEN MOTION ITSELF IS THE EVIDENCE.</div>
+<h2 id="animated-demo">Animated demo</h2>
+<div class="subtitle">GIFs are useful when motion itself is the evidence.</div>
 
 <GifFigure src="media/blog/lighting-demo.svg" alt="Animated lighting demonstration" label="FIG. 01" caption="Short looping lighting demonstration. Replace this sample with a real capture from the project." />
 
@@ -51,13 +51,13 @@ A callout is useful for constraints, conclusions, implementation rules or caveat
 For longer motion demonstrations, prefer muted autoplaying MP4/WebM with `loop`, `muted` and `playsinline`. GIF is most useful for short, immediate loops.
 </Callout>
 
-<h2 id="before-after">BEFORE / AFTER</h2>
-<div class="subtitle">DRAG THE DIVIDER WHEN PRECISE PIXEL-LEVEL COMPARISON MATTERS.</div>
+<h2 id="before-after">Before / after</h2>
+<div class="subtitle">Drag the divider when precise pixel-level comparison matters.</div>
 
 <BeforeAfter before="media/blog/before-render.svg" after="media/blog/after-render.svg" beforeLabel="Before" afterLabel="After" />
 
-<h2 id="metrics">METRICS</h2>
-<div class="subtitle">SURFACE THE IMPORTANT NUMBERS BEFORE THE FULL TABLE.</div>
+<h2 id="metrics">Metrics</h2>
+<div class="subtitle">Surface the important numbers before the full table.</div>
 
 <Metrics items={[
   { label: 'GPU frame', value: '6.8 ms', note: 'Example value · 1440p' },
@@ -72,8 +72,8 @@ For longer motion demonstrations, prefer muted autoplaying MP4/WebM with `loop`,
 | GI | Static probes / baked | Primary indirect lighting |
 | Screen-space | SSR + GTAO | Normals + depth buffers |
 
-<h2 id="frame-structure">FRAME STRUCTURE</h2>
-<div class="subtitle">TECHNICAL RELATIONSHIPS SHOULD BE OBVIOUS AT A GLANCE.</div>
+<h2 id="frame-structure">Frame structure</h2>
+<div class="subtitle">Technical relationships should be obvious at a glance.</div>
 
 ```text
 Frame
@@ -91,12 +91,12 @@ Keep limitations next to the result they affect. Benchmark numbers and screensho
 </Callout>
 
 <details>
-<summary>IMPLEMENTATION NOTES</summary>
+<summary>Implementation notes</summary>
 Engine-specific setup, shader permutations, version caveats and reproduction notes can live here without making the main article heavier.
 </details>
 
 <details>
-<summary>TEST METHODOLOGY</summary>
+<summary>Test methodology</summary>
 Document warm-up, capture duration, fixed camera state, GPU/CPU measurement method, and whether values are average, median or percentile.
 </details>
 

@@ -21,8 +21,8 @@ import Callout from '../../components/Callout.astro';
   ]}
 >
 
-<h2 id="problem">PROBLEM</h2>
-<div class="subtitle">DIFFERENT MATERIAL SEMANTICS NEED DIFFERENT FILTERING RULES.</div>
+<h2 id="problem">Problem</h2>
+<div class="subtitle">Different material semantics need different filtering rules.</div>
 
 A single linear average is rarely enough for every texture channel. Normal maps, roughness, opacity and tint masks each preserve different information.
 
@@ -30,13 +30,13 @@ A single linear average is rarely enough for every texture channel. Normal maps,
 Treat mip generation as semantic processing, then pack channels per mip after each semantic chain has been built.
 </Callout>
 
-<h2 id="comparison">COMPARISON</h2>
-<div class="subtitle">COMPARE THE RESULT AT THE SAME VIEW SCALE.</div>
+<h2 id="comparison">Comparison</h2>
+<div class="subtitle">Compare the result at the same view scale.</div>
 
 <BeforeAfter before="media/blog/mip-before.svg" after="media/blog/mip-after.svg" beforeLabel="Generic" afterLabel="Semantic" />
 
-<h2 id="policy">POLICY</h2>
-<div class="subtitle">MAKE THE FILTER CHOICE EXPLICIT.</div>
+<h2 id="policy">Policy</h2>
+<div class="subtitle">Make the filter choice explicit.</div>
 
 ```cpp
 MipPolicy ResolvePolicy(TextureSemantic semantic)
