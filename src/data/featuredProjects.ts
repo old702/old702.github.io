@@ -4,6 +4,7 @@ export type FeaturedProject = {
   meta: string;
   description: string;
   image?: string;
+  primaryHref?: string;
   links?: { label: string; href: string }[];
 };
 
@@ -12,8 +13,9 @@ export const featuredProjects: FeaturedProject[] = [
     slug: 'subtransit',
     title: 'Subtransit',
     meta: 'Game development / environment art / rendering',
-    description: 'An ongoing subway and tram simulation project focused on transit environments, atmosphere, rendering research, materials and interactive systems.',
+    description: 'Subway and tram simulation project focused on transit environments, rendering, materials and interactive systems.',
     image: 'media/projects/subtransit/01.svg',
+    primaryHref: 'work/subtransit/',
     links: [
       { label: 'Selected work', href: 'work/subtransit/' },
       { label: 'Rendering article', href: 'articles/forward-plus-renderer/' },
@@ -22,7 +24,7 @@ export const featuredProjects: FeaturedProject[] = [
   {
     slug: 'metrostroi',
     title: 'Metrostroi Subway Simulator',
-    meta: 'Source 1 / Garry\'s Mod / volunteer project',
-    description: 'An early long-running modding project and entry point into game development, created as part of the Metrostroi Subway Simulator community for Garry\'s Mod.',
+    meta: 'Source 1 / Garry\'s Mod',
+    description: 'Early long-running modding project and entry point into game development.',
   },
 ];

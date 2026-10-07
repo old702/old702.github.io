@@ -11,27 +11,34 @@ import { withBase } from '../../data/site';
       <p>Long-running game-development projects and collaborative work.</p>
     </header>
 
-    <section class="featured-projects" aria-label="Selected projects">
+    <section class="project-capsule-grid" aria-label="Selected projects">
       {featuredProjects.map((project) => (
-        <article class="featured-project" id={project.slug}>
-          <header>
+        <article class="project-capsule-card" id={project.slug}>
+          {project.primaryHref ? (
+            <a class="project-capsule-media" href={withBase(project.primaryHref)} aria-label={project.title}>
+              {project.image
+                ? <img src={withBase(project.image)} alt="" loading="lazy" />
+                : <span class="project-capsule-placeholder"><span>{project.title}</span></span>}
+            </a>
+          ) : (
+            <div class="project-capsule-media">
+              {project.image
+                ? <img src={withBase(project.image)} alt="" loading="lazy" />
+                : <span class="project-capsule-placeholder"><span>{project.title}</span></span>}
+            </div>
+          )}
+
+          <div class="project-capsule-copy">
             <h2>{project.title}</h2>
-            <p class="featured-project-meta">{project.meta}</p>
-          </header>
+            <p class="project-capsule-meta">{project.meta}</p>
+            <p class="project-capsule-description">{project.description}</p>
 
-          {project.image && (
-            <figure class="featured-project-media">
-              <img src={withBase(project.image)} alt="" loading="lazy" />
-            </figure>
-          )}
-
-          <p class="featured-project-description">{project.description}</p>
-
-          {project.links && (
-            <nav class="featured-project-links" aria-label={`${project.title} links`}>
-              {project.links.map((link) => <a href={withBase(link.href)}>{link.label} →</a>)}
-            </nav>
-          )}
+            {project.links && (
+              <nav class="project-capsule-links" aria-label={`${project.title} links`}>
+                {project.links.map((link) => <a href={withBase(link.href)}>{link.label} →</a>)}
+              </nav>
+            )}
+          </div>
         </article>
       ))}
     </section>
