@@ -1,6 +1,9 @@
+export type GalleryLayout = 'full' | 'half' | 'third';
+
 export type GalleryItem = {
   src: string;
   title: string;
+  layout?: GalleryLayout;
 };
 
 export type Project = {
@@ -25,12 +28,12 @@ export const projects: Project[] = [
     tileCover: 'media/projects/subtransit/tile-cover.svg',
     destination: 'gallery',
     gallery: [
-      { src: 'media/projects/subtransit/01.svg', title: 'Station Hall' },
-      { src: 'media/projects/subtransit/02.svg', title: 'Lighting Study' },
-      { src: 'media/projects/subtransit/03.svg', title: 'Model Study' },
-      { src: 'media/projects/subtransit/04.svg', title: 'Material Study' },
-      { src: 'media/projects/subtransit/05.svg', title: 'Platform Sequence' },
-      { src: 'media/projects/subtransit/06.svg', title: 'Final Presentation' },
+      { src: 'media/projects/subtransit/01.svg', title: 'Station Hall', layout: 'full' },
+      { src: 'media/projects/subtransit/02.svg', title: 'Lighting Study', layout: 'half' },
+      { src: 'media/projects/subtransit/03.svg', title: 'Model Study', layout: 'half' },
+      { src: 'media/projects/subtransit/04.svg', title: 'Material Study', layout: 'full' },
+      { src: 'media/projects/subtransit/05.svg', title: 'Platform Sequence', layout: 'half' },
+      { src: 'media/projects/subtransit/06.svg', title: 'Final Presentation', layout: 'half' },
     ],
   },
   {
@@ -42,10 +45,10 @@ export const projects: Project[] = [
     tileCover: 'media/projects/texturepacker/tile-cover.svg',
     destination: 'gallery',
     gallery: [
-      { src: 'media/projects/texturepacker/01.svg', title: 'Main UI' },
-      { src: 'media/projects/texturepacker/02.svg', title: 'Material Library' },
-      { src: 'media/projects/texturepacker/03.svg', title: 'Mip Chain' },
-      { src: 'media/projects/texturepacker/04.svg', title: 'Pipeline Graph' },
+      { src: 'media/projects/texturepacker/01.svg', title: 'Main UI', layout: 'full' },
+      { src: 'media/projects/texturepacker/02.svg', title: 'Material Library', layout: 'half' },
+      { src: 'media/projects/texturepacker/03.svg', title: 'Mip Chain', layout: 'half' },
+      { src: 'media/projects/texturepacker/04.svg', title: 'Pipeline Graph', layout: 'full' },
     ],
   },
   {
@@ -57,9 +60,9 @@ export const projects: Project[] = [
     tileCover: 'media/projects/blender-tools/tile-cover.svg',
     destination: 'gallery',
     gallery: [
-      { src: 'media/projects/blender-tools/01.svg', title: 'Exporter' },
-      { src: 'media/projects/blender-tools/02.svg', title: 'Asset Tool' },
-      { src: 'media/projects/blender-tools/03.svg', title: 'Procedural Study' },
+      { src: 'media/projects/blender-tools/01.svg', title: 'Exporter', layout: 'full' },
+      { src: 'media/projects/blender-tools/02.svg', title: 'Asset Tool', layout: 'half' },
+      { src: 'media/projects/blender-tools/03.svg', title: 'Procedural Study', layout: 'half' },
     ],
   },
   {
@@ -71,9 +74,9 @@ export const projects: Project[] = [
     tileCover: 'media/projects/metalhotspot-materials/tile-cover.svg',
     destination: 'gallery',
     gallery: [
-      { src: 'media/projects/metalhotspot-materials/01.svg', title: 'Material Overview' },
-      { src: 'media/projects/metalhotspot-materials/02.svg', title: 'Surface Response' },
-      { src: 'media/projects/metalhotspot-materials/03.svg', title: 'Wear Study' },
+      { src: 'media/projects/metalhotspot-materials/01.svg', title: 'Material Overview', layout: 'full' },
+      { src: 'media/projects/metalhotspot-materials/02.svg', title: 'Surface Response', layout: 'half' },
+      { src: 'media/projects/metalhotspot-materials/03.svg', title: 'Wear Study', layout: 'half' },
     ],
   },
   {
@@ -85,9 +88,9 @@ export const projects: Project[] = [
     tileCover: 'media/projects/tf2-fan-art/tile-cover.svg',
     destination: 'gallery',
     gallery: [
-      { src: 'media/projects/tf2-fan-art/01.svg', title: 'Model Render' },
-      { src: 'media/projects/tf2-fan-art/02.svg', title: 'Prop Study' },
-      { src: 'media/projects/tf2-fan-art/03.svg', title: 'Presentation Render' },
+      { src: 'media/projects/tf2-fan-art/01.svg', title: 'Model Render', layout: 'third' },
+      { src: 'media/projects/tf2-fan-art/02.svg', title: 'Prop Study', layout: 'third' },
+      { src: 'media/projects/tf2-fan-art/03.svg', title: 'Presentation Render', layout: 'third' },
     ],
   },
   {
@@ -99,9 +102,9 @@ export const projects: Project[] = [
     tileCover: 'media/projects/roughness-specular-aa/tile-cover.svg',
     destination: 'gallery',
     gallery: [
-      { src: 'media/projects/roughness-specular-aa/01.svg', title: 'Specular Response' },
-      { src: 'media/projects/roughness-specular-aa/02.svg', title: 'Roughness Comparison' },
-      { src: 'media/projects/roughness-specular-aa/03.svg', title: 'Highlight Stability' },
+      { src: 'media/projects/roughness-specular-aa/01.svg', title: 'Specular Response', layout: 'full' },
+      { src: 'media/projects/roughness-specular-aa/02.svg', title: 'Roughness Comparison', layout: 'half' },
+      { src: 'media/projects/roughness-specular-aa/03.svg', title: 'Highlight Stability', layout: 'half' },
     ],
   },
   {
@@ -113,9 +116,9 @@ export const projects: Project[] = [
     tileCover: 'media/projects/subtransit-agx-tonemapper/tile-cover.svg',
     destination: 'gallery',
     gallery: [
-      { src: 'media/projects/subtransit-agx-tonemapper/01.svg', title: 'Exposure Study' },
-      { src: 'media/projects/subtransit-agx-tonemapper/02.svg', title: 'Highlight Roll-off' },
-      { src: 'media/projects/subtransit-agx-tonemapper/03.svg', title: 'Final Tuning' },
+      { src: 'media/projects/subtransit-agx-tonemapper/01.svg', title: 'Exposure Study', layout: 'full' },
+      { src: 'media/projects/subtransit-agx-tonemapper/02.svg', title: 'Highlight Roll-off', layout: 'half' },
+      { src: 'media/projects/subtransit-agx-tonemapper/03.svg', title: 'Final Tuning', layout: 'half' },
     ],
   },
   {
@@ -145,9 +148,9 @@ export const projects: Project[] = [
     tileCover: 'media/projects/pipeline-tools/tile-cover.svg',
     destination: 'gallery',
     gallery: [
-      { src: 'media/projects/pipeline-tools/01.svg', title: 'Tooling Overview' },
-      { src: 'media/projects/pipeline-tools/02.svg', title: 'Debug Interface' },
-      { src: 'media/projects/pipeline-tools/03.svg', title: 'Asset Flow' },
+      { src: 'media/projects/pipeline-tools/01.svg', title: 'Tooling Overview', layout: 'full' },
+      { src: 'media/projects/pipeline-tools/02.svg', title: 'Debug Interface', layout: 'half' },
+      { src: 'media/projects/pipeline-tools/03.svg', title: 'Asset Flow', layout: 'half' },
     ],
   },
 ];

@@ -1,10 +1,12 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ProjectCard from '../components/ProjectCard.astro';
+import BlogCard from '../components/BlogCard.astro';
 import { projects } from '../data/projects';
+import { posts } from '../data/posts';
 
 const galleryProjects = projects.filter((project) => project.destination === 'gallery');
-const articleProjects = projects.filter((project) => project.destination === 'article');
+const recentPosts = posts.slice(0, 3);
 ---
 <BaseLayout active="work">
   <div class="page-shell work-page">
@@ -14,60 +16,61 @@ const articleProjects = projects.filter((project) => project.destination === 'ar
       <p>Selected environments, production tools, visual research and personal artwork.</p>
     </header>
 
-    <div class="filter-row" role="group" aria-label="Work categories">
-      <button type="button" data-filter="environment-art" aria-pressed="false">Environment Art</button>
-      <button type="button" data-filter="tools" aria-pressed="false">Tools</button>
-      <button type="button" data-filter="research" aria-pressed="false">Research</button>
-      <button type="button" data-filter="fan-art" aria-pressed="false">Fan Art</button>
-    </div>
-
-    <section class="work-section" data-work-section aria-labelledby="galleryHeading">
-      <div class="work-section-heading">
-        <h2 id="galleryHeading">Portfolio galleries</h2>
-        <p>Image-led projects and selected visual work.</p>
-      </div>
-      <div class="project-grid">
+    <section class="work-gallery" aria-label="Selected portfolio work">
+      <div class="project-grid" id="projectGrid">
         {galleryProjects.map((project, index) => <ProjectCard project={project} index={index} />)}
       </div>
     </section>
 
-    <section class="work-section" data-work-section aria-labelledby="researchHeading">
-      <div class="work-section-heading">
-        <h2 id="researchHeading">Research &amp; articles</h2>
-        <p>Technical notes and development research published in Devblog.</p>
+    <div class="work-browse">
+      <span class="work-browse-label">Browse work</span>
+      <div class="filter-row" role="group" aria-label="Work categories">
+        <button type="button" data-filter="environment-art" aria-pressed="false">Environment Art</button>
+        <button type="button" data-filter="tools" aria-pressed="false">Tools</button>
+        <button type="button" data-filter="research" aria-pressed="false">Research</button>
+        <button type="button" data-filter="fan-art" aria-pressed="false">Fan Art</button>
       </div>
-      <div class="research-list">
-        {articleProjects.map((project, index) => <ProjectCard project={project} index={galleryProjects.length + index} />)}
-      </div>
-    </section>
+    </div>
 
     <p class="empty-work" id="emptyWork" hidden>No projects in this category yet.</p>
+
+    <section class="home-research" aria-labelledby="homeResearchTitle">
+      <header class="home-research-head">
+        <div>
+          <span class="page-kicker">Research</span>
+          <h2 id="homeResearchTitle">From the Devblog.</h2>
+        </div>
+        <a href={import.meta.env.BASE_URL + 'blog/'}>All articles →</a>
+      </header>
+      <div class="home-research-list">
+        {recentPosts.map((post) => <BlogCard post={post} />)}
+      </div>
+    </section>
   </div>
 
   <script>
     const filters = Array.from(document.querySelectorAll<HTMLButtonElement>('.filter-row [data-filter]'));
-    const cards = Array.from(document.querySelectorAll<HTMLElement>('.work-page [data-categories]'));
-    const sections = Array.from(document.querySelectorAll<HTMLElement>('[data-work-section]'));
+    const cards = Array.from(document.querySelectorAll<HTMLElement>('#projectGrid [data-categories]'));
     const empty = document.querySelector<HTMLElement>('#emptyWork');
     let selected = '';
 
     for (const button of filters) {
       button.addEventListener('click', () => {
         selected = selected === button.dataset.filter ? '' : (button.dataset.filter || '');
+
         for (const filter of filters) {
-          const isActive = selected !== '' && filter.dataset.filter === selected;
-          filter.classList.toggle('active', isActive);
-          filter.setAttribute('aria-pressed', String(isActive));
+          const active = selected !== '' && filter.dataset.filter === selected;
+          filter.classList.toggle('active', active);
+          filter.setAttribute('aria-pressed', String(active));
         }
+
         let visible = 0;
         for (const card of cards) {
           const match = !selected || (card.dataset.categories || '').split(' ').includes(selected);
           card.hidden = !match;
           if (match) visible++;
         }
-        for (const section of sections) {
-          section.hidden = !section.querySelector('[data-categories]:not([hidden])');
-        }
+
         if (empty) empty.hidden = visible !== 0;
       });
     }

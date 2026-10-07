@@ -3,18 +3,18 @@ import type { Project } from '../data/projects';
 import { withBase } from '../data/site';
 interface Props { project: Project; index: number }
 const { project, index } = Astro.props;
-const isArticle = project.destination === 'article';
-const href = isArticle
+const href = project.destination === 'article'
   ? withBase(`blog/${project.article}/`)
   : withBase(`projects/${project.slug}/`);
 ---
-<a class:list={['project-card', { 'is-article': isArticle }]} href={href} data-categories={project.categories.join(' ')}>
+<a
+  class="project-card"
+  href={href}
+  data-categories={project.categories.join(' ')}
+  aria-label={project.title}
+  title={project.title}
+>
   <span class="project-thumb">
-    <img src={withBase(project.tileCover)} alt="" loading={index < 4 ? 'eager' : 'lazy'} />
-  </span>
-  <span class="project-copy">
-    <span class="project-format">{isArticle ? 'Devblog article' : 'Portfolio gallery'}</span>
-    <span class="project-title">{project.title}</span>
-    <span class="project-meta">{project.meta}</span>
+    <img src={withBase(project.tileCover)} alt={project.title} loading={index < 6 ? 'eager' : 'lazy'} />
   </span>
 </a>

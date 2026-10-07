@@ -11,36 +11,34 @@ export function getStaticPaths() {
 const { project } = Astro.props;
 const mediaCount = String(project.gallery?.length ?? 0).padStart(2, '0');
 ---
-<BaseLayout title={`${project.title} — Gallery`} description={project.meta} active="work">
-  <div class="page-shell">
+<BaseLayout title={`${project.title} — Gallery`} description={project.description ?? project.meta} active="work">
+  <div class="page-shell gallery-page">
     <header class="project-head gallery-intro">
       <a href={withBase('')} class="article-back">← Work</a>
-      <span class="page-kicker">Portfolio / {project.meta}</span>
+      <span class="page-kicker">{project.meta}</span>
       <h1>{project.title}</h1>
       {project.description && <p class="project-lede">{project.description}</p>}
       <div class="gallery-context">
-        <span>Gallery</span>
         <span>{mediaCount} images</span>
       </div>
     </header>
 
-    <h2 class="gallery-heading">Selected images</h2>
-    <section class="gallery-grid compact-grid" aria-label={`${project.title} gallery`}>
-      {project.gallery?.map((item) => (
+    <section class="gallery-grid" aria-label={`${project.title} gallery`}>
+      {project.gallery?.map((item, index) => (
         <button
-          class="gallery-card"
+          class:list={['gallery-card', `gallery-${item.layout ?? 'full'}`]}
           data-lightbox
           data-src={withBase(item.src)}
           data-title={item.title}
           aria-label={`Open ${item.title} fullscreen`}
         >
-          <img src={withBase(item.src)} alt={item.title} loading="lazy" />
+          <img src={withBase(item.src)} alt={item.title} loading={index < 2 ? 'eager' : 'lazy'} />
         </button>
       ))}
     </section>
   </div>
 
-  <div class="lightbox" id="lightbox" aria-hidden="true">
+  <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Image viewer">
     <button class="lightbox-close" aria-label="Close fullscreen image">×</button>
     <button class="lightbox-nav lightbox-prev" aria-label="Previous image">←</button>
     <button class="lightbox-nav lightbox-next" aria-label="Next image">→</button>
