@@ -1,0 +1,29 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import BlogNav from '../../../components/BlogNav.astro';
+import { posts } from '../../../data/posts';
+import { withBase } from '../../../data/site';
+---
+<BaseLayout title="Articles — Devblog" active="blog">
+  <div class="page-shell narrow-page blog-page">
+    <header class="page-intro">
+      <span class="page-kicker">Devblog</span>
+      <h1>Articles.</h1>
+      <p>Long-form technical writing, research notes and implementation breakdowns.</p>
+    </header>
+
+    <BlogNav active="articles" />
+
+    <section class="article-index" aria-label="Technical articles">
+      {posts.map((post) => (
+        <a class="article-index-row" href={withBase(`blog/${post.slug}/`)}>
+          <span>
+            <strong>{post.title}</strong>
+            <span class="article-index-topic">{post.category} · {post.readTime}</span>
+          </span>
+          <time>{post.date}</time>
+        </a>
+      ))}
+    </section>
+  </div>
+</BaseLayout>

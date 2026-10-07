@@ -1,0 +1,43 @@
+export type DevProject = {
+  title: string;
+  area: string;
+  description: string;
+  image: string;
+  href: string;
+  linkLabel: string;
+};
+
+export const devProjects: DevProject[] = [
+  {
+    title: 'Subtransit',
+    area: 'Game development / environment art / rendering',
+    description: 'An ongoing subway and tram simulation project combining environment production, real-time rendering research, lighting, materials, transit systems and interactive gameplay.',
+    image: 'media/projects/subtransit/tile-cover.svg',
+    href: 'projects/subtransit/',
+    linkLabel: 'View project gallery',
+  },
+  {
+    title: 'TexturePacker',
+    area: 'Texture processing / production tools',
+    description: 'A standalone texture-processing application focused on material workflows, channel packing, semantic mip generation, previews, batch processing and practical production tooling.',
+    image: 'media/projects/texturepacker/tile-cover.svg',
+    href: 'projects/texturepacker/',
+    linkLabel: 'View project gallery',
+  },
+  {
+    title: 'Blender Tools',
+    area: 'Asset pipeline / content tools',
+    description: 'A collection of Blender tools and workflow experiments for asset preparation, export, scene conventions, procedural modeling and production-oriented content processing.',
+    image: 'media/projects/blender-tools/tile-cover.svg',
+    href: 'projects/blender-tools/',
+    linkLabel: 'View project gallery',
+  },
+  {
+    title: 'TF2 Tools',
+    area: 'Analysis / research tools',
+    description: 'Tools and experiments for inspecting demo data, command timing, replay behavior and other engine-level details that are difficult to reason about from playback alone.',
+    image: 'media/projects/tf2-tools/tile-cover.svg',
+    href: 'blog/tf2-demo-analysis/',
+    linkLabel: 'Read related article',
+  },
+];

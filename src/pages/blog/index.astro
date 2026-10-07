@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import BlogCard from '../../components/BlogCard.astro';
+import BlogNav from '../../components/BlogNav.astro';
 import { posts } from '../../data/posts';
 ---
 <BaseLayout title="Devblog" active="blog">
@@ -8,10 +9,12 @@ import { posts } from '../../data/posts';
     <header class="page-intro">
       <span class="page-kicker">Research</span>
       <h1>Devblog.</h1>
-      <p>Technical notes, project breakdowns and working records from rendering, tools and game development.</p>
+      <p>Notes on rendering, tools, experiments and ongoing development.</p>
     </header>
 
-    <section class="blog-list">
+    <BlogNav active="blog" />
+
+    <section class="blog-list" aria-label="Latest posts">
       {posts.map((post) => <BlogCard post={post} />)}
     </section>
   </div>
