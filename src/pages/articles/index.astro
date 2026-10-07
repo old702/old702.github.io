@@ -9,6 +9,10 @@ import { withBase } from '../../data/site';
       <span class="page-kicker">Writing</span>
       <h1>Articles.</h1>
       <p>Technical writing, research notes and implementation breakdowns.</p>
+      <aside class="articles-disclaimer" aria-label="Disclaimer">
+        <strong>Disclaimer.</strong>
+        <p>These articles document my own research, experiments and learning process. They are not presented as definitive or authoritative sources, and I do not claim to be an unquestionable expert in every subject covered. Mistakes, incomplete conclusions and changes in understanding are possible, so please verify technical information independently and consult primary sources where appropriate.</p>
+      </aside>
     </header>
     <section class="article-index" aria-label="Technical articles">
       {posts.map((post) => (

@@ -492,6 +492,27 @@ h3,
   padding-bottom: 34px;
 }
 
+.articles-disclaimer {
+  max-width: 860px;
+  margin-top: 24px;
+  padding: 14px 0 14px 18px;
+  border-left: 2px solid #4f565b;
+}
+
+.articles-disclaimer strong {
+  display: block;
+  margin-bottom: 5px;
+  color: #8e959a;
+  font: 600 10px/1.45 var(--body);
+}
+
+.articles-disclaimer p {
+  margin: 0;
+  max-width: 820px;
+  color: #8f969b;
+  font: 400 13px/1.68 var(--body);
+}
+
 .article-index {
   width: 100%;
   margin-left: auto;
