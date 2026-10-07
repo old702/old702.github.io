@@ -1,14 +1,14 @@
 ---
 import { withBase } from '../../data/site';
 
-const redirects = [
-  { slug: 'subtransit', target: 'work/subtransit/' },
-  { slug: 'texturepacker', target: 'work/texturepacker/' },
-  { slug: 'blender-tools', target: 'work/blender-tools/' },
-  { slug: 'tf2-tools', target: 'articles/tf2-demo-analysis/' },
-];
-
 export function getStaticPaths() {
+  const redirects = [
+    { slug: 'subtransit', target: 'work/subtransit/' },
+    { slug: 'texturepacker', target: 'work/texturepacker/' },
+    { slug: 'blender-tools', target: 'work/blender-tools/' },
+    { slug: 'tf2-tools', target: 'articles/tf2-demo-analysis/' },
+  ];
+
   return redirects.map((item) => ({
     params: { slug: item.slug },
     props: { target: item.target },
