@@ -667,18 +667,12 @@ h3,
 .article-head.clean .article-back { margin-bottom: 38px; }
 .article-head.clean h1 {
   margin: 0; color: #f0efec; font-family: var(--article-heading); font-weight: 400;
-  font-size: clamp(36px, 4vw, 48px); line-height: 1.16; letter-spacing: -.025em;
+  font-size: clamp(36px, 3.7vw, 44px); line-height: 1.18; letter-spacing: -.022em;
 }
 .article-meta { display: flex; flex-wrap: wrap; gap: 5px 13px; margin: 14px 0 0; color: #777d81; font: 400 11px/1.55 var(--body); }
 .article-meta span { position: relative; }
 .article-meta span + span::before { content: "·"; position: absolute; left: -8px; color: #484d51; }
 .article-lede { margin: 27px 0 0; color: #c2c0bb; font: 400 19px/1.72 var(--article-serif); }
-.article-inline-toc { margin-top: 34px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,.06); }
-.article-inline-toc strong { display: block; margin-bottom: 8px; color: #777d81; font: 500 10px/1.45 var(--body); }
-.article-inline-toc > div { display: flex; flex-wrap: wrap; gap: 4px 16px; }
-.article-inline-toc a { color: #7e858a; font: 400 11px/1.55 var(--body); }
-.article-inline-toc a:hover { color: #d8dcde; }
-
 .clean-body { min-width: 0; color: #cbc9c4; font-family: var(--article-serif); }
 .clean-body > p, .clean-body > ul, .clean-body > ol, .clean-body > blockquote,
 .clean-body > .subtitle, .clean-body > .callout, .clean-body > details,
@@ -1044,11 +1038,6 @@ h3,
 
   .article-head.clean h1 { font-size: 34px; line-height: 1.18; }
   .article-lede { margin-top: 22px; font-size: 18px; line-height: 1.7; }
-
-  .article-inline-toc > div {
-    display: grid;
-    gap: 6px;
-  }
 
   .clean-body p, .clean-body ul, .clean-body ol { font-size: 17px; line-height: 1.8; }
   .clean-body h2 { margin-top: 48px; font-size: 27px; }
