@@ -23,13 +23,14 @@ const props = Astro.props;
     <header class="article-head clean">
       <a class="article-back" href={import.meta.env.BASE_URL + 'blog/'}>← Devblog</a>
 
+      <h1>{props.title}</h1>
+
       <div class="article-meta">
         <span>{props.date}</span>
         <span>{props.readTime}</span>
         {props.updated && <span>Updated {props.updated}</span>}
       </div>
 
-      <h1>{props.title}</h1>
       <p class="article-lede">{props.description}</p>
 
       {props.toc.length > 0 && (
