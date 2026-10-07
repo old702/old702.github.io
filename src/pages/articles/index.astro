@@ -13,7 +13,7 @@ import { withBase } from '../../data/site';
     <section class="article-index" aria-label="Technical articles">
       {posts.map((post) => (
         <a class="article-index-row" href={withBase(`articles/${post.slug}/`)}>
-          <span><strong>{post.title}</strong><span class="article-index-topic">{post.category} · {post.readTime}</span></span>
+          <strong>{post.title}</strong>
           <time>{post.date}</time>
         </a>
       ))}

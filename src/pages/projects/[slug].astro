@@ -1,12 +1,50 @@
 ---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { devProjects } from '../../data/devProjects';
 import { projects } from '../../data/projects';
 import { withBase } from '../../data/site';
 
 export function getStaticPaths() {
-  return projects
-    .filter((project) => project.destination === 'gallery')
-    .map((project) => ({ params: { slug: project.slug } }));
+  const projectPaths = devProjects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project, redirectTo: null },
+  }));
+
+  const projectSlugs = new Set(devProjects.map((project) => project.slug));
+  const legacyGalleryPaths = projects
+    .filter((project) => project.destination === 'gallery' && !projectSlugs.has(project.slug))
+    .map((project) => ({
+      params: { slug: project.slug },
+      props: { project: null, redirectTo: `work/${project.slug}/` },
+    }));
+
+  return [...projectPaths, ...legacyGalleryPaths];
 }
-const { slug } = Astro.params;
-return Astro.redirect(withBase(`work/${slug}/`), 301);
+
+const { project, redirectTo } = Astro.props;
+if (redirectTo) return Astro.redirect(withBase(redirectTo), 301);
 ---
+<BaseLayout title={`${project.title} — Projects`} description={project.description} active="projects">
+  <div class="page-shell project-detail-page">
+    <header class="project-detail-head">
+      <a class="article-back" href={withBase('projects/')}>← Projects</a>
+      <span class="page-kicker">{project.group}</span>
+      <h1>{project.title}</h1>
+      <p class="project-detail-area">{project.area}</p>
+    </header>
+
+    <figure class="project-detail-hero">
+      <img src={withBase(project.image)} alt="" />
+    </figure>
+
+    <div class="project-detail-copy">
+      <p>{project.description}</p>
+
+      <nav class="project-detail-links" aria-label={`${project.title} related material`}>
+        {project.links.map((link) => (
+          <a href={withBase(link.href)}>{link.label}<span aria-hidden="true">→</span></a>
+        ))}
+      </nav>
+    </div>
+  </div>
+</BaseLayout>
