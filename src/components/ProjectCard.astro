@@ -3,7 +3,7 @@ import type { Project } from '../data/projects';
 import { withBase } from '../data/site';
 interface Props { project: Project; index: number }
 const { project, index } = Astro.props;
-const href = project.destination === 'article' ? withBase(`articles/${project.article}/`) : withBase(`projects/${project.slug}/`);
+const href = project.destination === 'article' ? withBase(`articles/${project.article}/`) : withBase(`work/${project.slug}/`);
 ---
 <a class="project-card" href={href} data-categories={project.categories.join(' ')} aria-label={project.title} title={project.title}>
   <span class="project-thumb"><img src={withBase(project.tileCover)} alt={project.title} loading={index < 6 ? 'eager' : 'lazy'} /></span>

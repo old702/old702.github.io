@@ -572,15 +572,25 @@ h3,
   border-bottom: 1px solid rgba(255,255,255,.05);
 }
 .article-index-row:first-child { border-top: 1px solid rgba(255,255,255,.05); }
-.article-index-row strong { color: #d7dadd; font: 500 15px/1.5 var(--body); }
+.article-index-row strong { color: #deddda; font: 400 17px/1.45 var(--article-heading); letter-spacing: -.01em; }
 .article-index-row time { color: #71787e; font: 400 11px/1.5 var(--body); text-align: right; }
 .article-index-row:hover strong { color: #fff; }
 .article-index-topic { display: block; margin-top: 3px; color: #737a80; font-size: 11px; line-height: 1.5; }
 
 .projects-overview { width: min(100%, 760px); padding-bottom: 62px; }
+.project-group + .project-group { margin-top: 76px; }
+.project-group-title {
+  margin: 0 0 28px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--line);
+  color: #8b9297;
+  font: 500 11px/1.5 var(--body);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
 .project-overview { padding: 0 0 58px; }
 .project-overview + .project-overview { padding-top: 54px; border-top: 1px solid var(--line); }
-.project-overview h2 { margin: 0; color: #e7e9eb; font: 700 28px/1.18 var(--display); letter-spacing: -.025em; }
+.project-overview h3 { margin: 0; color: #e7e9eb; font: 700 28px/1.18 var(--display); letter-spacing: -.025em; }
 .project-overview-meta { display: block; margin: 7px 0 18px; color: #747c82; font-size: 11px; line-height: 1.5; }
 .project-overview-media { display: block; width: 100%; margin: 0 0 22px; overflow: hidden; background: var(--panel); }
 .project-overview-media img { width: 100%; aspect-ratio: 16 / 8.5; object-fit: cover; transition: opacity .16s ease; }
@@ -970,7 +980,8 @@ h3,
   .article-index-row time { text-align: left; }
   .project-overview { padding-bottom: 46px; }
   .project-overview + .project-overview { padding-top: 42px; }
-  .project-overview h2 { font-size: 24px; }
+  .project-overview h3 { font-size: 24px; }
+  .project-group + .project-group { margin-top: 58px; }
 
   .gallery-intro .project-lede {
     font-size: 15px;

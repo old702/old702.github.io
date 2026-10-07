@@ -17,7 +17,7 @@ const props = Astro.props;
         <span>{props.date}</span><span>{props.readTime}</span>
         {props.updated && <span>Updated {props.updated}</span>}
       </div>
-      <p class="article-lede">{props.description}</p>
+      <p class="article-lede">{props.subtitle}</p>
       {props.toc.length > 0 && (
         <nav class="article-inline-toc" aria-label="On this page">
           <strong>On this page</strong>
