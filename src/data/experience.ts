@@ -16,7 +16,7 @@ export const professionalExperience: ExperienceEntry[] = [
   {
     company: 'Wagon Software',
     role: 'Environment Artist, Texture Artist, Level Designer',
-    period: 'Nov 2019 — Apr 2026 · 6 yrs 6 mos',
+    period: 'Nov 2019 - Apr 2026 · 6 yrs 6 mos',
     location: 'Saint Petersburg Metropolitan Area',
     description: 'Environment and texture production with a strong technical-art component: modular asset systems, material workflows, shaders, level production and performance-oriented real-time content.',
     details: [
@@ -29,20 +29,20 @@ export const professionalExperience: ExperienceEntry[] = [
   {
     company: 'TRACE studio',
     role: 'Freelance 3D Artist',
-    period: 'Mar 2019 — May 2019 · 3 mos',
+    period: 'Mar 2019 - May 2019 · 3 mos',
     description: 'Short-term freelance 3D production work.',
   },
   {
     company: 'FoxWorks Aerospace s.r.o.',
     role: '3D Artist, Photogrammetry Artist',
-    period: 'Apr 2017 — May 2019 · 2 yrs 2 mos',
+    period: 'Apr 2017 - May 2019 · 2 yrs 2 mos',
     location: 'Czechia',
     description: '3D asset production with photogrammetry-based workflows and environment-oriented content creation.',
   },
   {
     company: 'OBLAKO Group',
     role: '3D Generalist',
-    period: 'Jan 2016 — Jan 2017 · 1 yr 1 mo',
+    period: 'Jan 2016 - Jan 2017 · 1 yr 1 mo',
     location: 'Moscow',
     description: '3D and level-production work for industrial simulators.',
     details: [
@@ -50,14 +50,5 @@ export const professionalExperience: ExperienceEntry[] = [
       'High-poly and low-poly modeling',
       'Motion design in Adobe After Effects and Premiere',
     ],
-  },
-];
-
-export const earlyExperience: ExperienceEntry[] = [
-  {
-    company: 'Metrostroi Subway Simulator',
-    role: 'Volunteer Source 1 mod development',
-    period: 'Early career / modding',
-    description: 'Started in game development as a mod creator for Source 1 games. One of the volunteer projects was Metrostroi Subway Simulator for Garry\'s Mod, which has had more than 350,000 subscribers since 2015.',
   },
 ];

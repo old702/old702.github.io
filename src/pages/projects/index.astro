@@ -1,44 +1,37 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { careerSummary, professionalExperience, earlyExperience } from '../../data/experience';
+import { featuredProjects } from '../../data/featuredProjects';
+import { withBase } from '../../data/site';
 ---
 <BaseLayout title="Projects" active="projects">
-  <div class="page-shell narrow-page section-page experience-page">
-    <header class="page-intro experience-intro">
-      <span class="page-kicker">Experience</span>
+  <div class="page-shell narrow-page section-page projects-page">
+    <header class="page-intro">
+      <span class="page-kicker">Development</span>
       <h1>Projects.</h1>
-      <p class="experience-role">{careerSummary.title}</p>
-      <p>{careerSummary.body}</p>
+      <p>Long-running game-development projects and collaborative work.</p>
     </header>
 
-    <section class="experience-section" aria-labelledby="professional-experience">
-      <h2 id="professional-experience">Professional experience</h2>
-      {professionalExperience.map((entry) => (
-        <article class="experience-entry">
-          <h3>{entry.company}</h3>
-          <p class="experience-position">{entry.role}</p>
-          <div class="experience-meta">
-            <span>{entry.period}</span>
-            {entry.location && <span>{entry.location}</span>}
-          </div>
-          <p class="experience-description">{entry.description}</p>
-          {entry.details && (
-            <ul>
-              {entry.details.map((detail) => <li>{detail}</li>)}
-            </ul>
-          )}
-        </article>
-      ))}
-    </section>
+    <section class="featured-projects" aria-label="Selected projects">
+      {featuredProjects.map((project) => (
+        <article class="featured-project" id={project.slug}>
+          <header>
+            <h2>{project.title}</h2>
+            <p class="featured-project-meta">{project.meta}</p>
+          </header>
 
-    <section class="experience-section" aria-labelledby="early-work">
-      <h2 id="early-work">Earlier work & modding</h2>
-      {earlyExperience.map((entry) => (
-        <article class="experience-entry">
-          <h3>{entry.company}</h3>
-          <p class="experience-position">{entry.role}</p>
-          <div class="experience-meta"><span>{entry.period}</span></div>
-          <p class="experience-description">{entry.description}</p>
+          {project.image && (
+            <figure class="featured-project-media">
+              <img src={withBase(project.image)} alt="" loading="lazy" />
+            </figure>
+          )}
+
+          <p class="featured-project-description">{project.description}</p>
+
+          {project.links && (
+            <nav class="featured-project-links" aria-label={`${project.title} links`}>
+              {project.links.map((link) => <a href={withBase(link.href)}>{link.label} →</a>)}
+            </nav>
+          )}
         </article>
       ))}
     </section>

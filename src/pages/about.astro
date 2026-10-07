@@ -1,39 +1,43 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { site } from '../data/site';
+import { careerSummary, professionalExperience } from '../data/experience';
 ---
 <BaseLayout title={`About — ${site.name}`} active="about">
-  <div class="page-shell narrow-page">
-    <header class="page-intro">
+  <div class="page-shell about-page">
+    <header class="page-intro about-intro">
       <span class="page-kicker">Profile</span>
       <h1>About.</h1>
-      <p>Game developer and artist working across real-time rendering, technical art, tools, environment production and pipeline development.</p>
+      <p class="about-role">{careerSummary.title}</p>
+      <p>{careerSummary.body}</p>
     </header>
 
-    <section class="about-simple">
-      <div class="about-section">
-        <h2>Experience</h2>
-        <article>
-          <span>2026 —</span>
-          <div><strong>Independent game / rendering development</strong><p>Subtransit · engine systems · rendering · world building · tools</p></div>
+    <section class="experience-section about-experience" aria-labelledby="professional-experience">
+      <h2 id="professional-experience">Professional experience</h2>
+      {professionalExperience.map((entry) => (
+        <article class="experience-entry">
+          <h3>{entry.company}</h3>
+          <p class="experience-position">{entry.role}</p>
+          <div class="experience-meta">
+            <span>{entry.period}</span>
+            {entry.location && <span>{entry.location}</span>}
+          </div>
+          <p class="experience-description">{entry.description}</p>
+          {entry.details && (
+            <ul>
+              {entry.details.map((detail) => <li>{detail}</li>)}
+            </ul>
+          )}
         </article>
-        <article>
-          <span>Tools</span>
-          <div><strong>Technical art & pipeline development</strong><p>C++ · Python · Blender · Unreal Engine · Dear ImGui</p></div>
-        </article>
-        <article>
-          <span>Research</span>
-          <div><strong>Real-time graphics</strong><p>Forward+ · materials · GI · AA · texture processing</p></div>
-        </article>
-      </div>
+      ))}
+    </section>
 
-      <div class="about-section">
-        <h2>Contact</h2>
-        <div class="simple-links">
-          <a href={site.github}><span>GitHub</span><small>old702 ↗</small></a>
-          {site.artstation && <a href={site.artstation}><span>ArtStation</span><small>Profile ↗</small></a>}
-          {site.email && <a href={`mailto:${site.email}`}><span>Email</span><small>{site.email}</small></a>}
-        </div>
+    <section class="about-contact">
+      <h2>Contact</h2>
+      <div class="simple-links">
+        <a href={site.github}><span>GitHub</span><small>old702 ↗</small></a>
+        {site.artstation && <a href={site.artstation}><span>ArtStation</span><small>Profile ↗</small></a>}
+        {site.email && <a href={`mailto:${site.email}`}><span>Email</span><small>{site.email}</small></a>}
       </div>
     </section>
   </div>
