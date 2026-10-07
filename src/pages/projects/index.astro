@@ -1,34 +1,45 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { devProjects } from '../../data/devProjects';
-import { withBase } from '../../data/site';
-
-const groups = [...new Set(devProjects.map((project) => project.group))];
+import { careerSummary, professionalExperience, earlyExperience } from '../../data/experience';
 ---
 <BaseLayout title="Projects" active="projects">
-  <div class="page-shell narrow-page section-page">
-    <header class="page-intro">
-      <span class="page-kicker">Development</span>
+  <div class="page-shell narrow-page section-page experience-page">
+    <header class="page-intro experience-intro">
+      <span class="page-kicker">Experience</span>
       <h1>Projects.</h1>
-      <p>Long-running development, tools and research work.</p>
+      <p class="experience-role">{careerSummary.title}</p>
+      <p>{careerSummary.body}</p>
     </header>
 
-    <section class="projects-overview" aria-label="Development projects">
-      {groups.map((group) => (
-        <section class="project-group" aria-labelledby={`group-${group.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`}>
-          <h2 class="project-group-title" id={`group-${group.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`}>{group}</h2>
-          {devProjects.filter((project) => project.group === group).map((project) => (
-            <article class="project-overview">
-              <h3><a href={withBase(`projects/${project.slug}/`)}>{project.title}</a></h3>
-              <span class="project-overview-meta">{project.area}</span>
-              <a class="project-overview-media" href={withBase(`projects/${project.slug}/`)} aria-label={project.title}>
-                <img src={withBase(project.image)} alt="" loading="lazy" />
-              </a>
-              <p>{project.description}</p>
-              <a class="project-overview-link" href={withBase(`projects/${project.slug}/`)}>Project overview →</a>
-            </article>
-          ))}
-        </section>
+    <section class="experience-section" aria-labelledby="professional-experience">
+      <h2 id="professional-experience">Professional experience</h2>
+      {professionalExperience.map((entry) => (
+        <article class="experience-entry">
+          <h3>{entry.company}</h3>
+          <p class="experience-position">{entry.role}</p>
+          <div class="experience-meta">
+            <span>{entry.period}</span>
+            {entry.location && <span>{entry.location}</span>}
+          </div>
+          <p class="experience-description">{entry.description}</p>
+          {entry.details && (
+            <ul>
+              {entry.details.map((detail) => <li>{detail}</li>)}
+            </ul>
+          )}
+        </article>
+      ))}
+    </section>
+
+    <section class="experience-section" aria-labelledby="early-work">
+      <h2 id="early-work">Earlier work & modding</h2>
+      {earlyExperience.map((entry) => (
+        <article class="experience-entry">
+          <h3>{entry.company}</h3>
+          <p class="experience-position">{entry.role}</p>
+          <div class="experience-meta"><span>{entry.period}</span></div>
+          <p class="experience-description">{entry.description}</p>
+        </article>
       ))}
     </section>
   </div>

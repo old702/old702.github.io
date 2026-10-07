@@ -11,7 +11,7 @@
   --article-serif: Lora, Georgia, "Times New Roman", serif;
   --article-heading: Bitter, Georgia, "Times New Roman", serif;
   --page: 860px;
-  --article: 900px;
+  --article: 860px;
   --article-copy: 700px;
   --article-wide: 860px;
   --work-wide: 1320px;
@@ -484,10 +484,18 @@ h3,
 /* Articles / Projects indexes */
 
 .section-page { padding-bottom: 72px; }
-.section-page .page-intro { padding-bottom: 34px; }
+.section-page .page-intro {
+  width: min(100%, var(--article-copy));
+  max-width: none;
+  margin-left: auto;
+  margin-right: auto;
+  padding-bottom: 34px;
+}
 
 .article-index {
-  width: min(100%, 760px);
+  width: min(100%, var(--article-copy));
+  margin-left: auto;
+  margin-right: auto;
   padding: 0 0 54px;
 }
 .article-index-row {
@@ -510,10 +518,36 @@ h3,
 .article-index-row time { color: #71787e; font: 400 11px/1.5 var(--body); text-align: right; }
 .article-index-row:hover strong { color: #fff; }
 
-.projects-overview { width: min(100%, 760px); padding-bottom: 62px; }
-.project-group + .project-group { margin-top: 76px; }
-.project-group-title {
-  margin: 0 0 28px;
+.experience-page {
+  padding-bottom: 78px;
+}
+
+.experience-intro .experience-role {
+  margin-top: 18px;
+  color: #d7dbde;
+  font: 500 15px/1.5 var(--body);
+}
+
+.experience-intro .experience-role + p {
+  margin-top: 10px;
+  max-width: 700px;
+  color: #9da4a9;
+  font-size: 14px;
+  line-height: 1.75;
+}
+
+.experience-section {
+  width: min(100%, var(--article-copy));
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.experience-section + .experience-section {
+  margin-top: 76px;
+}
+
+.experience-section > h2 {
+  margin: 0 0 26px;
   padding-bottom: 10px;
   border-bottom: 1px solid var(--line);
   color: #8b9297;
@@ -521,92 +555,70 @@ h3,
   letter-spacing: .08em;
   text-transform: uppercase;
 }
-.project-overview { padding: 0 0 58px; }
-.project-overview + .project-overview { padding-top: 54px; border-top: 1px solid var(--line); }
-.project-overview h3 { margin: 0; color: #e7e9eb; font: 700 28px/1.18 var(--display); letter-spacing: -.025em; }
-.project-overview-meta { display: block; margin: 7px 0 18px; color: #747c82; font-size: 11px; line-height: 1.5; }
-.project-overview-media { display: block; width: 100%; margin: 0 0 22px; overflow: hidden; background: var(--panel); }
-.project-overview-media img { width: 100%; height: auto; transition: opacity .16s ease; }
-.project-overview-media:hover img { opacity: .9; }
-.project-overview p { max-width: 700px; margin: 0; color: #aab0b5; font-size: 15px; line-height: 1.75; }
-.project-overview-link { display: inline-block; margin-top: 15px; color: #c8cdd0; font-size: 12px; text-decoration: underline; text-decoration-color: #596167; text-underline-offset: 3px; }
-.project-overview-link:hover { color: #fff; text-decoration-color: #b7bdc1; }
 
-/* Project detail */
-
-.project-detail-page {
-  width: min(calc(100% - 40px), var(--page));
-  padding-bottom: 92px;
+.experience-entry {
+  padding: 0 0 48px;
 }
 
-.project-detail-head {
-  width: min(100%, 700px);
-  padding: 58px 0 36px;
+.experience-entry + .experience-entry {
+  padding-top: 44px;
+  border-top: 1px solid rgba(255,255,255,.05);
 }
 
-.project-detail-head .article-back {
-  margin-bottom: 34px;
-}
-
-.project-detail-head h1 {
+.experience-entry h3 {
   margin: 0;
-  color: #f0f1f2;
-  font: 700 clamp(38px, 4.7vw, 52px)/1 var(--display);
-  letter-spacing: -.045em;
+  color: #eceeed;
+  font: 400 27px/1.24 var(--article-heading);
+  letter-spacing: -.015em;
 }
 
-.project-detail-area {
-  margin: 12px 0 0;
-  color: #7f878d;
-  font-size: 12px;
-  line-height: 1.6;
+.experience-position {
+  margin: 7px 0 0;
+  color: #c7cbce;
+  font-size: 14px;
+  line-height: 1.55;
 }
 
-.project-detail-hero {
-  width: 100%;
-  margin: 0 0 34px;
-  background: var(--panel);
-}
-
-.project-detail-hero img {
-  width: 100%;
-  height: auto;
-}
-
-.project-detail-copy {
-  width: min(100%, 700px);
-}
-
-.project-detail-copy > p {
-  margin: 0;
-  color: #b5b9bb;
-  font-size: 16px;
-  line-height: 1.78;
-}
-
-.project-detail-links {
-  display: grid;
-  margin-top: 28px;
-  border-top: 1px solid var(--line);
-}
-
-.project-detail-links a {
+.experience-meta {
   display: flex;
-  justify-content: space-between;
-  gap: 20px;
-  padding: 11px 0;
-  border-bottom: 1px solid var(--line);
-  color: #b8bdc0;
-  font-size: 12px;
-  line-height: 1.5;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  margin-top: 5px;
+  color: #747c82;
+  font-size: 11px;
+  line-height: 1.55;
 }
 
-.project-detail-links a span {
-  color: #666e74;
+.experience-meta span + span {
+  position: relative;
 }
 
-.project-detail-links a:hover {
-  color: #fff;
+.experience-meta span + span::before {
+  content: "·";
+  position: absolute;
+  left: -8px;
+  color: #494f54;
+}
+
+.experience-description {
+  margin: 19px 0 0;
+  color: #b6babd;
+  font: 400 17px/1.78 var(--article-serif);
+}
+
+.experience-entry ul {
+  margin: 17px 0 0;
+  padding-left: 1.25em;
+  color: #adb2b5;
+  font: 400 15px/1.7 var(--body);
+}
+
+.experience-entry li + li {
+  margin-top: 5px;
+}
+
+.experience-entry li::marker {
+  color: #666e73;
 }
 
 /* About */
@@ -959,16 +971,11 @@ h3,
 
   .article-index-row { grid-template-columns: 1fr; gap: 2px; padding: 13px 0; }
   .article-index-row time { text-align: left; }
-  .project-overview { padding-bottom: 46px; }
-  .project-overview + .project-overview { padding-top: 42px; }
-  .project-overview h3 { font-size: 24px; }
-  .project-group + .project-group { margin-top: 58px; }
-
-  .project-detail-page { width: calc(100% - 28px); padding-bottom: 72px; }
-  .project-detail-head { padding: 48px 0 30px; }
-  .project-detail-head h1 { font-size: 39px; }
-  .project-detail-hero { margin-bottom: 26px; }
-  .project-detail-copy > p { font-size: 15px; line-height: 1.75; }
+  .experience-section + .experience-section { margin-top: 58px; }
+  .experience-entry { padding-bottom: 40px; }
+  .experience-entry + .experience-entry { padding-top: 36px; }
+  .experience-entry h3 { font-size: 24px; }
+  .experience-description { font-size: 16px; line-height: 1.75; }
 
   .gallery-intro .project-lede {
     font-size: 15px;
