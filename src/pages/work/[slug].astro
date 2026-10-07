@@ -13,15 +13,11 @@ const mediaCount = String(project.gallery?.length ?? 0).padStart(2, '0');
 ---
 <BaseLayout title={`${project.title} — Gallery`} description={project.description ?? project.meta} active="work">
   <div class="page-shell gallery-page">
-    <header class="project-head gallery-intro">
-      <a href={withBase('')} class="article-back">← Work</a>
-      <span class="page-kicker">{project.meta}</span>
-      <h1>{project.title}</h1>
-      {project.description && <p class="project-lede">{project.description}</p>}
-      <div class="gallery-context">
-        <span>{mediaCount} images</span>
-      </div>
-    </header>
+    {project.description && (
+      <header class="gallery-intro">
+        <p class="project-lede">{project.description}</p>
+      </header>
+    )}
 
     <section class="gallery-grid" aria-label={`${project.title} gallery`}>
       {project.gallery?.map((item, index) => (

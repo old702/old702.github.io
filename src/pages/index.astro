@@ -6,11 +6,6 @@ const galleryProjects = projects.filter((project) => project.destination === 'ga
 ---
 <BaseLayout active="work">
   <div class="page-shell work-page">
-    <header class="page-intro home-intro">
-      <span class="page-kicker">Portfolio</span>
-      <h1>Selected work.</h1>
-      <p>Selected environments, production tools, visual research and personal artwork.</p>
-    </header>
     <section class="work-gallery" aria-label="Selected portfolio work">
       <div class="project-grid" id="projectGrid">
         {galleryProjects.map((project, index) => <ProjectCard project={project} index={index} />)}
